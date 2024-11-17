@@ -6,11 +6,113 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{% static 'main-header/css/main-header.css' %}">
     <link rel="stylesheet" href="{% static 'global/css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'index/css/style.css' %}">
 
 </head>
 <body>
     <div class="main-container">
         {% include 'main_header.html' %}
+    </div>
+    <div class="content-background">
+        <div class="main-container">
+            <div class="car-selector">
+                <div class="catalog-column">
+                    <ul>
+                        <li><span>A</span><a href="/Catalog/Global/Cars/Audi">Audi</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/BAIC">BAIC</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/BMW">BMW</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Cadillac">Cadillac</a></li>
+                        <li><span>Ch</span><a href="/Catalog/Global/Cars/Changan">Changan</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Chery">Chery</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Chevrolet">Chevrolet</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Citroen">Citroen</a></li>
+                        <li><span>D</span><a href="/Catalog/Global/Cars/Daewoo">Daewoo</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Exeed">Exeed</a></li>
+                    </ul>
+                </div>
+                <div class="catalog-column">
+                    <ul>
+                        <li><span>F</span><a href="/Catalog/Global/Cars/FAW">FAW</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Ford">Ford</a></li>
+                        <li><span>G</span><a href="/Catalog/Global/Cars/Geely">Geely</a></li>
+                        <li><span>H</span><a href="/Catalog/Global/Cars/Haval">Haval</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Honda">Honda</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Hyundai">Hyundai</a></li>
+                        <li><span>I</span><a href="/Catalog/Global/Cars/Infiniti">Infiniti</a></li>
+                        <li><span>J</span><a href="/Catalog/Global/Cars/JAC">JAC</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Jaguar">Jaguar</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Jeep">Jeep</a></li>
+                    </ul>
+                </div>
+                <div class="catalog-column">
+                    <ul>
+                        <li><span></span><a href="/Catalog/Global/Cars/Jetour">Jetour</a></li>
+                        <li><span>J</span><a href="/Catalog/Global/Cars/Jetta">Jetta</a></li>
+                        <li><span>K</span><a href="/Catalog/Global/Cars/Kaiyi">Kaiyi</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Kia">Kia</a></li>
+                        <li><span>L</span><a href="/Catalog/Global/Cars/Land Rover">Land Rover</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Lexus">Lexus</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Livan">Livan</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Lixiang">Lixiang</a></li>
+                        <li><span>M</span><a href="/Catalog/Global/Cars/Mazda">Mazda</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Mercedes">Mercedes</a></li>
+                    </ul>
+                </div>
+                <div class="catalog-column">
+                    <ul>
+                        <li><span></span><a href="/Catalog/Global/Cars/Mitsubishi">Mitsubishi</a></li>
+                        <li><span>N</span><a href="/Catalog/Global/Cars/Nissan">Nissan</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Omada">Omada</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Opel">Opel</a></li>
+                        <li><span>P</span><a href="/Catalog/Global/Cars/Peugeot">Peugeot</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Porsche">Porsche</a></li>
+                        <li><span>R</span><a href="/Catalog/Global/Cars/Renault">Renault</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Skoda">Skoda</a></li>
+                        <li><span>S</span><a href="/Catalog/Global/Cars/Subaru">Subaru</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Suzuki">Suzuki</a></li>
+                    </ul>
+                </div>
+                <div class="catalog-column">
+                    <ul>
+                        <li><span>T</span><a href="/Catalog/Global/Cars/Tank">Tank</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Toyota">Toyota</a></li>
+                        <li><span>V</span><a href="/Catalog/Global/Cars/Volkswagen">Volkswagen</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Volvo">Volvo</a></li>
+                        <li><span></span><a href="/Catalog/Global/Cars/Voyah">Voyah</a></li>
+                        <li><span>В</span><a href="/Catalog/Global/Cars/VWAZ">ВАЗ</a></li>
+                        <li><span>Г</span><a href="/Catalog/Global/Cars/GAZ">ГАЗ</a></li>
+                        <li><span>М</span><a href="/Catalog/Global/Cars/Moskvich">Москвич</a></li>
+                        <li><span>У</span><a href="/Catalog/Global/Cars/UAZ">УАЗ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="category-1">
+                <div class="category-1-info">
+                    Запчасти для технического обслуживания
+                </div>
+                <a href="/redirect-url">
+                    <img src="{% static 'index/img/img.png' %}" alt="Category Image" class="category-image">
+                </a>
+            </div>
+
+            <div class="fluids">
+                <div class="fluid-item bg-white">
+                    <div class="fluid-img brake-fluid-img"></div>
+                    <p>Тормозные жидкости</p>
+                </div>
+                <div class="fluid-item bg-yellow">
+                    <div class="fluid-img engine-oil-img"></div>
+                    <p>Моторные масла</p>
+                </div>
+                <div class="fluid-item">
+                    <div class="fluid-img other-fluids-img"></div>
+                    <p>Прочие жидкости</p>
+                </div>
+            </div>
+
+
+        </div>
     </div>
 </body>
 </html>

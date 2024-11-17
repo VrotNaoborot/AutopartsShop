@@ -1,0 +1,116 @@
+.catalog-column ul {
+    list-style: none; /* Убираем стандартные маркеры списка */
+    padding: 0;
+    margin: 0;
+}
+
+.catalog-column ul li {
+    display: flex; /* Используем flexbox для управления выравниванием */
+    align-items: center; /* Центрируем элементы по вертикали */
+    gap: 8px; /* Расстояние между <span> и <a> */
+    margin-bottom: 10px; /* Разделяем элементы списка */
+}
+
+.catalog-column ul li span {
+    flex-shrink: 0; /* Предотвращаем сжатие буквы */
+    width: 20px; /* Фиксированная ширина для буквы */
+    text-align: center; /* Выравниваем букву по центру */
+    color: red;
+}
+
+.catalog-column ul li a {
+    display: inline-block; /* Обеспечиваем, чтобы текст ссылки вел себя как блок */
+    text-decoration: none; /* Убираем стандартное подчеркивание */
+    color: black; /* Цвет текста */
+    font-size: 16px;
+}
+
+.catalog-column ul li a:hover {
+    color: #007BFF; /* Цвет при наведении */
+}
+
+
+.content-background {
+    background-color: #eee; /* Фон на всю ширину страницы */
+    width: 100%; /* Ширина фона */
+    padding: 20px 0; /* Отступы сверху и снизу */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+.car-selector {
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+.category-1 {
+    margin-top: 20px;
+}
+.category-1-info {
+    background-color: white;
+    color: #7c7c7c;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.category-image {
+    width: 100%;
+    height: auto;
+}
+
+/********/
+
+.fluids {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+    width: 100%; /* Убедитесь, что родительский элемент может растягиваться */
+    min-width: 0; /* Убираем ограничения по ширине */
+}
+
+
+.fluid-item {
+    flex: 1; /* Равномерное распределение ширины */
+    text-align: center; /* Центровка текста под картинкой */
+}
+
+.fluid-item p {
+    margin-top: 10px; /* Отступ между картинкой и текстом */
+    padding: 0;
+    color: #363636;
+    font-size: 18px;
+}
+
+
+.bg-white {
+    background-color: white;
+}
+
+.bg-yellow {
+    background-color: #ffc536;
+}
+
+.fluid-img {
+    width: 100%; /* Занимает всю доступную ширину */
+    aspect-ratio: 1; /* Сохраняет квадратную форму */
+    background-size: cover; /* Изображение полностью заполняет блок */
+    background-position: center center; /* Центрируем изображение */
+    height: 180px; /* Устанавливаем фиксированную высоту для картинки */
+}
+
+.brake-fluid-img {
+    background: url(//s.exist.ru/img2/tiles-imgs/trans-oil.png) center center no-repeat;
+}
+
+.engine-oil-img {
+    background: url(//s.exist.ru/img2/tiles-imgs/oil.png) center center no-repeat;
+}
+
+.other-fluids-img {
+    background: url(//s.exist.ru/img2/tiles-imgs/other-fluids.png) center center no-repeat;
+}
