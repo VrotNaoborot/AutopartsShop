@@ -64,7 +64,7 @@
 
 /********/
 
-.fluids {
+.fluids, .other{
     display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -83,7 +83,7 @@
     margin-top: 10px; /* Отступ между картинкой и текстом */
     padding: 0;
     color: #363636;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 
@@ -91,9 +91,22 @@
     background-color: white;
 }
 
-.bg-yellow {
-    background-color: #ffc536;
+.fluid-item.bg-yellow {
+    flex: 0 0 500px; /* Фиксированная ширина для центрального блока */
 }
+
+.fluid-item.bg-purple {
+    flex: 0 0 500px; /* Фиксированная ширина для центрального блока */
+}
+
+.bg-yellow {
+    background: radial-gradient(ellipse at center, #ffd44b 0%, #ffaf00 100%);
+}
+
+.bg-purple {
+    background: radial-gradient(ellipse at center, #c294c0 0%, #8e589c 100%);
+}
+
 
 .fluid-img {
     width: 100%; /* Занимает всю доступную ширину */
@@ -115,8 +128,18 @@
     background: url(//s.exist.ru/img2/tiles-imgs/other-fluids.png) center center no-repeat;
 }
 
+.accessories-img {
+    background: url(//s.exist.ru/img2/tiles-imgs/access.png) center center no-repeat;
+}
+
+.wheel-img {
+    background: #fff url(//s.exist.ru/img/shini-kontur1.jpg) right center no-repeat
+}
+
 .category-block {
     background-color: white;
+    display: flex;
+    align-items: stretch; /* Растягивает дочерние элементы по высоте */
 }
 
 .category-list {
@@ -124,11 +147,75 @@
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column; /* Элементы идут по вертикали */
-    justify-content: space-between; /* Равномерное распределение по высоте */
-    width: 100%; /* Растянуть список по ширине родителя */
+    flex-direction: column; /* Элементы располагаются вертикально */
+    justify-content: space-between; /* Равномерное распределение элементов */
+    flex-grow: 1; /* Список занимает всю высоту родителя */
 }
 
-.category-list {
-    text-align: left;
+.category-list li {
+    text-align: left; /* Выровнять текст по левому краю */
+    line-height: 1.5; /* Устанавливает межстрочный интервал */
+    padding: 6px 0; /* Добавляет отступы для элементов */
+    padding-left: 10px;
+    border-bottom: 1px solid #ddd; /* Добавляет полоску снизу */
+    transition: background-color 0.3s ease; /* Плавный переход для фона */
+}
+
+
+
+.category-list a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: inherit; /* Наследуем цвет текста */
+    display: block; /* Ссылка занимает весь элемент списка */
+    padding: 5px 0; /* Добавляем немного отступов */
+}
+
+.category-list li:hover {
+    background-color: var(--bg-color-button-hover)
+}
+
+.fluid-link, .other-link {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: inherit; /* Сохраняем цвет текста */
+    display: block; /* Ссылка занимает всю область родителя */
+    text-align: center; /* Центровка текста */
+}
+
+.fluid-item.bg-white:hover,
+.fluid-item.bg-yellow:hover,
+.fluid-item.bg-purple:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+/*************/
+
+.popular-item {
+    margin-top: 20px;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+}
+
+
+
+.popular-items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 столбца */
+}
+
+.item {
+    text-align: center;
+}
+
+.item img {
+    width: 100%; /* Чтобы изображение было по ширине блока */
+    height: auto;
+    max-width: 150px; /* Максимальная ширина картинки */
+    margin-bottom: 10px;
+}
+
+.item p {
+    font-size: 14px;
+    margin: 0;
+    color: #333;
 }
