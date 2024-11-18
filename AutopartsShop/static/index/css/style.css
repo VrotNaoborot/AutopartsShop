@@ -114,3 +114,21 @@
 .other-fluids-img {
     background: url(//s.exist.ru/img2/tiles-imgs/other-fluids.png) center center no-repeat;
 }
+
+.category-block {
+    background-color: white;
+}
+
+.category-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Элементы идут по вертикали */
+    justify-content: space-between; /* Равномерное распределение по высоте */
+    width: 100%; /* Растянуть список по ширине родителя */
+}
+
+.category-list {
+    text-align: left;
+}
