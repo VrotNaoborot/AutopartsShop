@@ -6,6 +6,9 @@
     --bg-color-button-hover: #e8e8e8;
 }
 
+a {
+    text-decoration: none; /* Убираем подчеркивание */
+}
 
 
 .main-container {

@@ -193,18 +193,31 @@
     margin-top: 20px;
     width: 100%;
     background-color: white;
-    padding: 20px;
 }
 
+.popular-item-text {
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 16px;
+    color: #7c7c7c;
+}
 
 
 .popular-items-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 столбца */
+    row-gap: 20px;
 }
 
 .item {
     text-align: center;
+    border-right: 1px solid #ccc; /* Бордер только справа */
+
+}
+
+.item:nth-child(3n) {
+    border-right: none; /* Убираем правый бордер у каждого третьего элемента */
 }
 
 .item img {
@@ -218,4 +231,24 @@
     font-size: 14px;
     margin: 0;
     color: #333;
+    font-size: 20px;
+}
+
+.item:hover {
+    background-color: var(--bg-color-button-hover);
+}
+
+.battery-img {
+    background: url(https://img.exist.ru/img.jpg?Key=682107FC&Size=100x100&MethodType=2) no-repeat center;
+}
+
+.snow-cleaning-img {
+    background: url(https://img.exist.ru/img.jpg?Key=AC50CE67&Size=100x100&MethodType=2) no-repeat center;
+}
+
+.images-popular-items {
+    width: 100px; /* Ширина блока с картинкой */
+    height: 100px; /* Высота блока с картинкой */
+    margin: 0 auto 10px; /* Центрирование блока */
+    background-color: transparent; /* Убираем фон, чтобы не мешал */
 }
