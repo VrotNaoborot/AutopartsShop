@@ -33,7 +33,6 @@
 .content-background {
     background-color: #eee; /* Фон на всю ширину страницы */
     width: 100%; /* Ширина фона */
-    padding: 20px 0; /* Отступы сверху и снизу */
     box-sizing: border-box; /* Учитываем padding в ширине */
 }
 
@@ -99,6 +98,10 @@
     flex: 0 0 500px; /* Фиксированная ширина для центрального блока */
 }
 
+.fluid-item.bg-blue {
+    flex: 0 0 500px; /* Фиксированная ширина для центрального блока */
+}
+
 .bg-yellow {
     background: radial-gradient(ellipse at center, #ffd44b 0%, #ffaf00 100%);
 }
@@ -107,6 +110,9 @@
     background: radial-gradient(ellipse at center, #c294c0 0%, #8e589c 100%);
 }
 
+.bg-blue {
+    background: radial-gradient(ellipse at center, #89c4f4 0%, #396eb0 100%);
+}
 
 .fluid-img {
     width: 100%; /* Занимает всю доступную ширину */
@@ -208,6 +214,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 столбца */
     row-gap: 20px;
+    padding-bottom: 10px;
 }
 
 .item {
@@ -235,15 +242,25 @@
 }
 
 .item:hover {
-    background-color: var(--bg-color-button-hover);
+    background-color: #f5f5f5;
 }
 
+.item:hover .images-popular-items {
+    filter: contrast(93%);
+}
+
+
 .battery-img {
-    background: url(https://img.exist.ru/img.jpg?Key=682107FC&Size=100x100&MethodType=2) no-repeat center;
+    background: url(//s.exist.ru/img2/tiles-imgs/battery.png) center center no-repeat;
 }
 
 .snow-cleaning-img {
     background: url(https://img.exist.ru/img.jpg?Key=AC50CE67&Size=100x100&MethodType=2) no-repeat center;
+
+}
+
+.lamps-img {
+    background: url(//s.exist.ru/img2/tiles-imgs/lamp.png) center center no-repeat;
 }
 
 .images-popular-items {
@@ -252,3 +269,4 @@
     margin: 0 auto 10px; /* Центрирование блока */
     background-color: transparent; /* Убираем фон, чтобы не мешал */
 }
+

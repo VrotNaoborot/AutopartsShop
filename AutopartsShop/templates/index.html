@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'main-header/css/main-header.css' %}">
     <link rel="stylesheet" href="{% static 'global/css/global.css' %}">
     <link rel="stylesheet" href="{% static 'index/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'footer_down/css/footer_down.css' %}">
 
 </head>
 <body>
@@ -156,40 +157,64 @@
                         </a>
                     </div>
                     <div class="item">
-                        <a href="https://example.com/product/2">
-                            <div class="images-popular-items battery-img"></div>
-                            <p>Принадлежность 1</p>
+                        <a href="https://example.com/product/1">
+                            <div class="images-popular-items snow-cleaning-img"></div>
+                            <p>Щетка для очистки снега</p>
                         </a>
                     </div>
                     <div class="item">
-                        <a href="https://example.com/product/3">
-                            <div class="images-popular-items battery-img"></div>
-                            <p>Принадлежность 2</p>
+                        <a href="https://example.com/product/1">
+                            <div class="images-popular-items snow-cleaning-img"></div>
+                            <p>Щетка для очистки снега</p>
                         </a>
                     </div>
                     <div class="item">
-                        <a href="https://example.com/product/4">
-                            <div class="images-popular-items battery-img"></div>
-                            <p>Принадлежность 3</p>
+                        <a href="https://example.com/product/1">
+                            <div class="images-popular-items snow-cleaning-img"></div>
+                            <p>Щетка для очистки снега</p>
                         </a>
                     </div>
                     <div class="item">
-                        <a href="https://example.com/product/5">
-                            <div class="images-popular-items battery-img"></div>
-                            <p>Принадлежность 4</p>
+                        <a href="https://example.com/product/1">
+                            <div class="images-popular-items snow-cleaning-img"></div>
+                            <p>Щетка для очистки снега</p>
                         </a>
                     </div>
                     <div class="item">
-                        <a href="https://example.com/product/6">
-                            <div class="images-popular-items battery-img"></div>
-                            <p>Принадлежность 5</p>
+                        <a href="https://example.com/product/1">
+                            <div class="images-popular-items snow-cleaning-img"></div>
+                            <p>Щетка для очистки снега</p>
                         </a>
                     </div>
                 </div>
             </div>
 
+            <div class="other">
+                <div class="fluid-item bg-white">
+                    <a href="/accessories/" class="other-link">
+                        <div class="fluid-img lamps-img"></div>
+                        <p>Лампы</p>
+                    </a>
+                </div>
+                <div class="fluid-item bg-blue">
+                    <a href="/accessories/" class="other-link">
+                        <div class="fluid-img battery-img"></div>
+                        <p>Аккумуляторы</p>
+                    </a>
+                </div>
+                <div class="fluid-item category-block">
+                    <ul class="category-list">
+                        <li><a href="/transmission-oils/">Видеорегистраторы</a></li>
+                        <li><a href="/car-cosmetics/">Предохранители</a></li>
+                        <li><a href="/cooling-liquids/">Навигаторы</a></li>
+                        <li><a href="/washer-liquids/">Автомагнитолы</a></li>
+                        <li><a href="/all-chemicals/">Вся электроника</a></li>
+                    </ul>
+                </div>
+            </div>
 
         </div>
+        {% include 'footer_down.html' %}
     </div>
 </body>
 </html>
