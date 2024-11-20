@@ -1,0 +1,113 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'main-header/css/main-header.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'footer_down/css/footer_down.css' %}">
+    <link rel="stylesheet" href="{% static 'catalog/css/catalog.css' %}">
+</head>
+<body>
+    <div class="main-container">
+        {% include 'main_header.html' %}
+    </div>
+    <div class="content-background">
+        <div class="main-container">
+            <div class="catalog-container">
+                <aside class="filters">
+                    <h2>Фильтры</h2>
+                    <form>
+                        <div class="filter-group">
+                            <label for="car-brand">Выберите автомобиль</label>
+                            <select id="car-brand">
+                                <option>Выберите марку</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="manufacturer">Производитель</label>
+                            <select id="manufacturer">
+                                <option>Выберите</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <p>Уровень качества</p>
+                            <label><input type="checkbox" name="quality" value="budget"> Бюджет</label>
+                            <label><input type="checkbox" name="quality" value="optimum"> Оптимум</label>
+                            <label><input type="checkbox" name="quality" value="original"> Оригинал</label>
+                        </div>
+                        <button type="submit" class="apply-button">Применить</button>
+                        <button type="reset" class="reset-button">Сбросить</button>
+                    </form>
+                </aside>
+                <main class="catalog">
+                    <h1>Вентилятор кондиционера <span>14 шт</span></h1>
+
+
+                    <div class="card">
+                        <div class="card_left" style="font-size: 13px">
+
+                            <a href="/detail/10000300-ajusa">
+                                <div style="text-align: center; margin-bottom: 15px">
+                                    <img loading="lazy" src="/images/large/ajusa/139_10000300.jpg"
+                                         alt="Прокладка ГБЦ AJUSA 10000300" class="card_image"
+                                         style="max-height: 200px">
+                                </div>
+                            </a>
+
+                            <div class="card_data" style="margin: 0 0 10px">
+                                <a href="/detail/10000300-ajusa" class="card_title">Прокладка ГБЦ AJUSA 10000300</a>
+                                <div class="card_table-row" style="margin: 4px 0 0;">
+                                    <span class="card_table-cell">Брэнд</span>
+                                    <div class="card_table-cell"></div>
+                                    <span class="card_table-cell">AJUSA</span>
+                                </div>
+                                <div class="card_table-row">
+                                    <span class="card_table-cell">Артикул</span>
+                                    <div class="card_table-cell"></div>
+                                    <span class="card_table-cell">10000300</span>
+                                </div>
+
+                                <div class="card_table-row">
+                                    <span class="card_table-cell">Страна бренда</span>
+                                    <div class="card_table-cell"></div>
+                                    <span class="card_table-cell">
+                                                Испания                    </span>
+                                </div>
+
+                                <div class="card_table-row">
+                                    <span class="card_table-cell">Вес [г]</span>
+                                    <div class="card_table-cell"></div>
+                                    <span class="card_table-cell">120</span>
+                                </div>
+                                <div class="card_table-row" style="font-size: 14px;margin-top: 5px">
+                                    <span><b>Краткое описание: </b> OPEL: CORSA A TR 1.0 82-93, CORSA A Наклонная задняя часть 1.0 82-93, CORSA A фургон 1.0 86-94, KADETT C 1.0 73-79, KADETT C City 1.0 73-79,</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card_controls" style="display:flex;align-items: center;min-width:180px;">
+                            <div>
+                                <span class="in-stock">В наличии</span>
+                            </div>
+                            <div class="card_price" style="text-align: center;margin: 10px 0 15px">
+                                <span class="price">от <span class="price_value">74</span><span
+                                        class="price_fractional">.30</span> BYN</span>
+                            </div>
+                            <div class="card_button" style="text-align: center">
+                                <a class="card_offers" style="min-width: 150px; padding: 0"
+                                   href="/detail/10000300-ajusa">
+                                    <!--                <span class="more-button_icon"></span>-->
+                                    <!--                <img width="17px" src="/src/img/icons8-update-32.png">-->
+                                    Подробнее </a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </main>
+            </div>
+
+        </div>
+    </div>
+</body>

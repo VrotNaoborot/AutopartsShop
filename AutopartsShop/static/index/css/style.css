@@ -1,3 +1,7 @@
+body {
+    font: 14px/1.4 "HelveticaNeueCyr", Helvetica, sans-serif;
+}
+
 .catalog-column ul {
     list-style: none; /* Убираем стандартные маркеры списка */
     padding: 0;

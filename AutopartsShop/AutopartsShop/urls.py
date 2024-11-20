@@ -21,5 +21,6 @@ from shop.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
-    path('test/', test)
+    path('test/', test),
+    path('catalog/', catalog)
 ]

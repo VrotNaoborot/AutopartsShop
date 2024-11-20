@@ -10,3 +10,7 @@ def index(request):
 
 def test(request):
     return render(request, 'test.html')
+
+
+def catalog(request):
+    return render(request, 'catalog.html')
