@@ -1,21 +1,8 @@
 
 
-.catalog-container {
+.content {
   display: flex;
   margin: 20px;
-}
-
-.filters {
-  width: 25%;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-right: 20px;
-}
-
-.filters h2 {
-  margin-bottom: 20px;
 }
 
 .filter-group {
@@ -55,8 +42,9 @@ input[type="checkbox"] {
 }
 
 .catalog h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
+    font-size: 30px;
+    line-height: 1;
+    font-weight: bold;
 }
 
 
@@ -120,6 +108,15 @@ input[type="checkbox"] {
     max-width:300px
 }
 
+.card_table-cell:nth-child(1) {
+    color: #8f8f8f;
+    flex-grow: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px
+}
+
 .card_table-cell:nth-child(2) {
     flex-grow: 10;
     height: 13px;
@@ -160,7 +157,7 @@ input[type="checkbox"] {
 
 .card_offers {
     display: inline-block;
-    background: #f93f20;
+    background: var(--red-color);
     box-sizing: border-box;
     border: none;
     cursor: pointer;
@@ -183,4 +180,169 @@ input[type="checkbox"] {
     z-index:1;
     box-shadow: 0px 0px 30px rgba(0,0,0,.15);
     border-top-color: transparent
+}
+
+.title-count {
+    font-size:.7em;
+    color: #c4c4c4;
+    margin: 0 0 0 5px;
+    top: -11px;
+
+}
+
+/**********************/
+
+.filters {
+    display: block;
+    background: #f8f8f8;
+    padding: 2px 20px;
+    box-sizing: border-box;
+    width: 250px;
+    margin: 0 30px 0 0;
+
+}
+
+.filters_title {
+    background: #fff;
+    background-image: url('/static/catalog/img/filter.svg');
+    background-repeat: no-repeat;
+    background-position: center right 16px;
+    background-size: 25px 25px;
+    pointer-events: none;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 20px;
+    display: block;
+    margin: 2px -18px;
+    height: 72px;
+    line-height: 72px;
+    padding: 0 20px;
+}
+
+.filters_section-title {
+    background: none;
+    margin: 25px 0 10px;
+    color: grey;
+    font-weight: bold;
+    line-height: 24px;
+    display: block;
+    position: relative;
+}
+
+.dynamic-filter {
+    margin-top: 5px;
+}
+
+.choices {
+    position: relative;
+    margin-bottom: 14px;
+    font-size: 16px;
+    color: #313235
+}
+
+.choices[data-type*=select-one] {
+    cursor: pointer
+}
+
+.choices:last-child {
+    margin-bottom: 0
+}
+
+.choices__inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 3px;
+    font-size: 14px;
+    height: 40px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5
+}
+
+
+.choices__list {
+    margin: 0;
+    padding-left: 0;
+    list-style: none
+}
+
+.choices__list--single {
+    display: inline-block;
+    padding: 0 70px 0 20px;
+    width: 100%
+}
+
+.choices__list--single .choices__item {
+    width: 100%;
+    white-space: nowrap
+}
+
+.choices[data-type*=select-one] .choices__input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    margin: 0
+}
+
+.choices [hidden] {
+    display: none !important
+}
+
+.choices__list--dropdown {
+    visibility: hidden;
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    top: 100%;
+    margin-top: -1px;
+    border-bottom-left-radius: 2.5px;
+    border-bottom-right-radius: 2.5px;
+    overflow: hidden;
+    word-break: break-all;
+    will-change: visibility
+}
+
+.choices__list--dropdown .choices__list {
+    position: relative;
+    max-height: 300px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position
+}
+
+.choices__list--dropdown .choices__item--selectable.is-highlighted {
+    background-color: #f2f2f2
+}
+
+.choices__list--dropdown .choices__item {
+    position: relative;
+    padding: 10px;
+    font-size: 14px
+}
+
+.choices__item--selectable {
+    cursor: pointer
+}
+
+.choices[data-type*=select-one]:after {
+    content: "";
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    pointer-events: none;
+    background: url('/static/catalog/img/chevron-down.svg') no-repeat center;
+    border-left: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    border-radius: 0px 3px 3px 0px
+}
+
+.choices__list--dropdown.is-active {
+    visibility: visible
 }

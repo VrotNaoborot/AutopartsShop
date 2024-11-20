@@ -14,34 +14,43 @@
     </div>
     <div class="content-background">
         <div class="main-container">
-            <div class="catalog-container">
-                <aside class="filters">
-                    <h2>Фильтры</h2>
-                    <form>
-                        <div class="filter-group">
-                            <label for="car-brand">Выберите автомобиль</label>
-                            <select id="car-brand">
-                                <option>Выберите марку</option>
-                            </select>
+            <div class="content">
+
+                <div class="filters" id="filter_container">
+                    <span class="filters_title">
+                        Фильтры
+                    </span>
+                    <span class="filters_section-title" style="font-size:14px;">
+                        Выберите автомобиль
+                    </span>
+                    <div id="marks" class="dynamic-filter">
+                        <div class="choices" data-type="select-one" tabindex="0" role="listbox" aria-haspopup="true" aria-expanded="false">
+                            <div class="choices__inner">
+                                <select name="marks" class="choices__input" hidden="" tabindex="-1" data-choice="active">
+                                    <option value="0">Выберите марку</option>
+                                </select>
+                                <div class="choices__list choices__list--single">
+                                    <div class="choices__item choices__item--selectable" data-item="" data-id="1" data-value="0" data-custom-properties="null" aria-selected="true">Выберите марку</div>
+                                </div>
+                            </div>
+
+                            <div class="choices__list choices__list--dropdown" aria-expanded="false">
+                                <div class="choices__list" role="listbox">
+                                    <div id="choices--marks-lm-item-choice-1" class="choices__item choices__item--choice is-selected choices__item--selectable is-highlighted" role="option" data-choice="" data-id="1" data-value="0" data-select-text="" data-choice-selectable="" aria-selected="true">
+                                        Выберите марку
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="filter-group">
-                            <label for="manufacturer">Производитель</label>
-                            <select id="manufacturer">
-                                <option>Выберите</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <p>Уровень качества</p>
-                            <label><input type="checkbox" name="quality" value="budget"> Бюджет</label>
-                            <label><input type="checkbox" name="quality" value="optimum"> Оптимум</label>
-                            <label><input type="checkbox" name="quality" value="original"> Оригинал</label>
-                        </div>
-                        <button type="submit" class="apply-button">Применить</button>
-                        <button type="reset" class="reset-button">Сбросить</button>
-                    </form>
-                </aside>
+                    </div>
+
+                </div>
                 <main class="catalog">
-                    <h1>Вентилятор кондиционера <span>14 шт</span></h1>
+                    <h1>Вентилятор кондиционера
+                        <sup class="title-count">
+                            14 шт
+                        </sup>
+                    </h1>
 
 
                     <div class="card">
@@ -49,7 +58,7 @@
 
                             <a href="/detail/10000300-ajusa">
                                 <div style="text-align: center; margin-bottom: 15px">
-                                    <img loading="lazy" src="/images/large/ajusa/139_10000300.jpg"
+                                    <img loading="lazy" src="https://av-parts.by/images/large/nrf/34204-nrf.jpeg"
                                          alt="Прокладка ГБЦ AJUSA 10000300" class="card_image"
                                          style="max-height: 200px">
                                 </div>
@@ -71,8 +80,7 @@
                                 <div class="card_table-row">
                                     <span class="card_table-cell">Страна бренда</span>
                                     <div class="card_table-cell"></div>
-                                    <span class="card_table-cell">
-                                                Испания                    </span>
+                                    <span class="card_table-cell">Испания</span>
                                 </div>
 
                                 <div class="card_table-row">
@@ -97,9 +105,8 @@
                             <div class="card_button" style="text-align: center">
                                 <a class="card_offers" style="min-width: 150px; padding: 0"
                                    href="/detail/10000300-ajusa">
-                                    <!--                <span class="more-button_icon"></span>-->
-                                    <!--                <img width="17px" src="/src/img/icons8-update-32.png">-->
-                                    Подробнее </a>
+                                    Подробнее
+                                </a>
                             </div>
                         </div>
 
