@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
     path('test/', test),
-    path('catalog/', catalog)
+    path('catalog/', catalog),
+    path('get-models/<int:brand_id>/', get_models_by_brand),
 ]

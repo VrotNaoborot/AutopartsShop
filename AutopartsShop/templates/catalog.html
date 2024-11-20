@@ -9,112 +9,254 @@
     <link rel="stylesheet" href="{% static 'catalog/css/catalog.css' %}">
 </head>
 <body>
+<div class="main-container">
+    {% include 'main_header.html' %}
+</div>
+<div class="content-background">
     <div class="main-container">
-        {% include 'main_header.html' %}
-    </div>
-    <div class="content-background">
-        <div class="main-container">
-            <div class="content">
+        <div class="content">
 
-                <div class="filters" id="filter_container">
+            <div class="filters" id="filter_container">
                     <span class="filters_title">
                         Фильтры
                     </span>
-                    <span class="filters_section-title" style="font-size:14px;">
+                <span class="filters_section-title" style="font-size:14px;">
                         Выберите автомобиль
                     </span>
-                    <div id="marks" class="dynamic-filter">
-                        <div class="choices" data-type="select-one" tabindex="0" role="listbox" aria-haspopup="true" aria-expanded="false">
-                            <div class="choices__inner">
-                                <select name="marks" class="choices__input" hidden="" tabindex="-1" data-choice="active">
-                                    <option value="0">Выберите марку</option>
-                                </select>
-                                <div class="choices__list choices__list--single">
-                                    <div class="choices__item choices__item--selectable" data-item="" data-id="1" data-value="0" data-custom-properties="null" aria-selected="true">Выберите марку</div>
+                <div id="marks" class="dynamic-filter">
+                    <div class="choices" data-type="select-one" tabindex="0" role="listbox" aria-haspopup="true"
+                         aria-expanded="false">
+                        <div class="choices__inner">
+                            <select name="marks" class="choices__input" hidden="" tabindex="-1" data-choice="active">
+                                <option value="0">Выберите марку</option>
+                            </select>
+                            <div class="choices__list choices__list--single">
+                                <div class="choices__item choices__item--selectable" data-item="" data-id="1"
+                                     data-value="0" data-custom-properties="null" aria-selected="true">Выберите марку
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="choices__list choices__list--dropdown" aria-expanded="false">
-                                <div class="choices__list" role="listbox">
-                                    <div id="choices--marks-lm-item-choice-1" class="choices__item choices__item--choice is-selected choices__item--selectable is-highlighted" role="option" data-choice="" data-id="1" data-value="0" data-select-text="" data-choice-selectable="" aria-selected="true">
-                                        Выберите марку
-                                    </div>
+                        <div class="choices__list choices__list--dropdown" aria-expanded="false">
+                            <div class="choices__list" role="listbox">
+                                <div id="choices--marks-lm-item-choice-1"
+                                     class="choices__item choices__item--choice is-selected choices__item--selectable"
+                                     role="option" data-choice="" data-id="1" data-value="-1" data-select-text=""
+                                     data-choice-selectable="" aria-selected="true">
+                                    Выберите марку
+                                </div>
+                                <div id="choices--marks-lm-item-choice-2"
+                                     class="choices__item choices__item--choice is-selected choices__item--selectable"
+                                     role="option" data-choice="" data-id="1" data-value="0" data-select-text=""
+                                     data-choice-selectable="" aria-selected="true">
+                                    Audi
+                                </div>
+                                <div id="choices--marks-lm-item-choice-3"
+                                     class="choices__item choices__item--choice is-selected choices__item--selectable"
+                                     role="option" data-choice="" data-id="1" data-value="0" data-select-text=""
+                                     data-choice-selectable="" aria-selected="true">
+                                    BMW
+                                </div>
+                                <div id="choices--marks-lm-item-choice-4"
+                                     class="choices__item choices__item--choice is-selected choices__item--selectable"
+                                     role="option" data-choice="" data-id="1" data-value="0" data-select-text=""
+                                     data-choice-selectable="" aria-selected="true">
+                                    Mercedes
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <main class="catalog">
-                    <h1>Вентилятор кондиционера
-                        <sup class="title-count">
-                            14 шт
-                        </sup>
-                    </h1>
 
-
-                    <div class="card">
-                        <div class="card_left" style="font-size: 13px">
-
-                            <a href="/detail/10000300-ajusa">
-                                <div style="text-align: center; margin-bottom: 15px">
-                                    <img loading="lazy" src="https://av-parts.by/images/large/nrf/34204-nrf.jpeg"
-                                         alt="Прокладка ГБЦ AJUSA 10000300" class="card_image"
-                                         style="max-height: 200px">
-                                </div>
-                            </a>
-
-                            <div class="card_data" style="margin: 0 0 10px">
-                                <a href="/detail/10000300-ajusa" class="card_title">Прокладка ГБЦ AJUSA 10000300</a>
-                                <div class="card_table-row" style="margin: 4px 0 0;">
-                                    <span class="card_table-cell">Брэнд</span>
-                                    <div class="card_table-cell"></div>
-                                    <span class="card_table-cell">AJUSA</span>
-                                </div>
-                                <div class="card_table-row">
-                                    <span class="card_table-cell">Артикул</span>
-                                    <div class="card_table-cell"></div>
-                                    <span class="card_table-cell">10000300</span>
-                                </div>
-
-                                <div class="card_table-row">
-                                    <span class="card_table-cell">Страна бренда</span>
-                                    <div class="card_table-cell"></div>
-                                    <span class="card_table-cell">Испания</span>
-                                </div>
-
-                                <div class="card_table-row">
-                                    <span class="card_table-cell">Вес [г]</span>
-                                    <div class="card_table-cell"></div>
-                                    <span class="card_table-cell">120</span>
-                                </div>
-                                <div class="card_table-row" style="font-size: 14px;margin-top: 5px">
-                                    <span><b>Краткое описание: </b> OPEL: CORSA A TR 1.0 82-93, CORSA A Наклонная задняя часть 1.0 82-93, CORSA A фургон 1.0 86-94, KADETT C 1.0 73-79, KADETT C City 1.0 73-79,</span>
+                <div id="models" class="dynamic-filter" style="display: none;">
+                    <div class="choices is-open" data-type="select-one" tabindex="0" role="listbox" aria-haspopup="true"
+                         aria-expanded="true" aria-activedescendant="choices--models-hu-item-choice-2">
+                        <div class="choices__inner"><select name="models" class="choices__input" hidden="" tabindex="-1"
+                                                            data-choice="active">
+                            <option value="0">Выберите модель</option>
+                        </select>
+                            <div class="choices__list choices__list--single">
+                                <div class="choices__item choices__item--selectable" data-item="" data-id="24"
+                                     data-value="0" data-custom-properties="null" aria-selected="true">Выберите модель
                                 </div>
                             </div>
                         </div>
+                        <div class="choices__list choices__list--dropdown" aria-expanded="true">
+                            <div class="choices__list" role="listbox">
+                                <div id="choices--models-hu-item-choice-2"
+                                     class="choices__item choices__item--choice choices__item--selectable" role="option"
+                                     data-choice="" data-id="2" data-value="59" data-select-text=""
+                                     data-choice-selectable="">1 серии
+                                </div>
 
-                        <div class="card_controls" style="display:flex;align-items: center;min-width:180px;">
-                            <div>
-                                <span class="in-stock">В наличии</span>
                             </div>
-                            <div class="card_price" style="text-align: center;margin: 10px 0 15px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dynamic-filter">
+                    <div id="filter-types">
+                        <h3>Тип товара:</h3>
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="filter-part"> Запчасти
+                            </label>
+                            <label>
+                                <input type="checkbox" id="filter-accessory"> Аксессуары
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dynamic-filter" style="margin-bottom: 10px;">
+                    <span class="filters_section-title">Категория</span>
+                    <div class="choices" data-type="select-one" tabindex="0" role="combobox" aria-autocomplete="list"
+                         aria-haspopup="true" aria-expanded="false">
+                        <div class="choices__inner"><select class="select choices__input" name="brand" hidden=""
+                                                            tabindex="-1" data-choice="active">
+                            <option value="AVA QUALITY COOLING">AVA QUALITY COOLING</option>
+                        </select>
+                            <div class="choices__list choices__list--single">
+                                <div class="choices__item choices__item--selectable" data-item="" data-id="2"
+                                     data-value="AVA QUALITY COOLING" data-custom-properties="null"
+                                     aria-selected="true">AVA QUALITY COOLING
+                                </div>
+                            </div>
+                        </div>
+                        <div class="choices__list choices__list--dropdown" aria-expanded="false"><input type="text"
+                                                                                                        class="choices__input choices__input--cloned"
+                                                                                                        autocomplete="off"
+                                                                                                        autocapitalize="off"
+                                                                                                        spellcheck="false"
+                                                                                                        role="textbox"
+                                                                                                        aria-autocomplete="list"
+                                                                                                        aria-label="Выберите"
+                                                                                                        placeholder=""
+                                                                                                        aria-activedescendant="choices--brand-ji-item-choice-1">
+                            <div class="choices__list" role="listbox">
+                                <div id="choices--brand-ji-item-choice-1"
+                                     class="choices__item choices__item--choice choices__placeholder choices__item--selectable is-highlighted"
+                                     role="option" data-choice="" data-id="1" data-value="" data-select-text=""
+                                     data-choice-selectable="" aria-selected="true">Выберите
+                                </div>
+                                <div id="choices--brand-ji-item-choice-2"
+                                     class="choices__item choices__item--choice is-selected choices__item--selectable"
+                                     role="option" data-choice="" data-id="2" data-value="AVA QUALITY COOLING"
+                                     data-select-text="" data-choice-selectable="" aria-selected="false">AVA QUALITY
+                                    COOLING
+                                </div>
+                                <div id="choices--brand-ji-item-choice-3"
+                                     class="choices__item choices__item--choice choices__item--selectable" role="option"
+                                     data-choice="" data-id="3" data-value="GANZ" data-select-text=""
+                                     data-choice-selectable="">GANZ
+                                </div>
+                                <div id="choices--brand-ji-item-choice-4"
+                                     class="choices__item choices__item--choice choices__item--selectable" role="option"
+                                     data-choice="" data-id="4" data-value="HYUNDAI/KIA/MOBIS" data-select-text=""
+                                     data-choice-selectable="">HYUNDAI/KIA/MOBIS
+                                </div>
+                                <div id="choices--brand-ji-item-choice-5"
+                                     class="choices__item choices__item--choice choices__item--selectable" role="option"
+                                     data-choice="" data-id="5" data-value="LUZAR" data-select-text=""
+                                     data-choice-selectable="">LUZAR
+                                </div>
+                                <div id="choices--brand-ji-item-choice-6"
+                                     class="choices__item choices__item--choice choices__item--selectable" role="option"
+                                     data-choice="" data-id="6" data-value="NRF" data-select-text=""
+                                     data-choice-selectable="">NRF
+                                </div>
+                                <div id="choices--brand-ji-item-choice-7"
+                                     class="choices__item choices__item--choice choices__item--selectable" role="option"
+                                     data-choice="" data-id="7" data-value="OSSCA" data-select-text=""
+                                     data-choice-selectable="">OSSCA
+                                </div>
+                                <div id="choices--brand-ji-item-choice-8"
+                                     class="choices__item choices__item--choice choices__item--selectable" role="option"
+                                     data-choice="" data-id="8" data-value="PARTS-MALL" data-select-text=""
+                                     data-choice-selectable="">PARTS-MALL
+                                </div>
+                                <div id="choices--brand-ji-item-choice-9"
+                                     class="choices__item choices__item--choice choices__item--selectable" role="option"
+                                     data-choice="" data-id="9" data-value="STELLOX" data-select-text=""
+                                     data-choice-selectable="">STELLOX
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <main class="catalog">
+                <h1>Весь каталог
+                    <sup class="title-count">
+                        14 шт
+                    </sup>
+                </h1>
+
+
+                <div class="card">
+                    <div class="card_left" style="font-size: 13px">
+
+                        <a href="/detail/10000300-ajusa">
+                            <div style="text-align: center; margin-bottom: 15px">
+                                <img loading="lazy" src="https://av-parts.by/images/large/nrf/34204-nrf.jpeg"
+                                     alt="Прокладка ГБЦ AJUSA 10000300" class="card_image"
+                                     style="max-height: 200px">
+                            </div>
+                        </a>
+
+                        <div class="card_data" style="margin: 0 0 10px">
+                            <a href="/detail/10000300-ajusa" class="card_title">Прокладка ГБЦ AJUSA 10000300</a>
+                            <div class="card_table-row" style="margin: 4px 0 0;">
+                                <span class="card_table-cell">Брэнд</span>
+                                <div class="card_table-cell"></div>
+                                <span class="card_table-cell">AJUSA</span>
+                            </div>
+                            <div class="card_table-row">
+                                <span class="card_table-cell">Артикул</span>
+                                <div class="card_table-cell"></div>
+                                <span class="card_table-cell">10000300</span>
+                            </div>
+
+                            <div class="card_table-row">
+                                <span class="card_table-cell">Страна бренда</span>
+                                <div class="card_table-cell"></div>
+                                <span class="card_table-cell">Испания</span>
+                            </div>
+
+                            <div class="card_table-row">
+                                <span class="card_table-cell">Вес [г]</span>
+                                <div class="card_table-cell"></div>
+                                <span class="card_table-cell">120</span>
+                            </div>
+                            <div class="card_table-row" style="font-size: 14px;margin-top: 5px">
+                                <span><b>Краткое описание: </b> OPEL: CORSA A TR 1.0 82-93, CORSA A Наклонная задняя часть 1.0 82-93, CORSA A фургон 1.0 86-94, KADETT C 1.0 73-79, KADETT C City 1.0 73-79,</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card_controls" style="display:flex;align-items: center;min-width:180px;">
+                        <div>
+                            <span class="in-stock">В наличии</span>
+                        </div>
+                        <div class="card_price" style="text-align: center;margin: 10px 0 15px">
                                 <span class="price">от <span class="price_value">74</span><span
                                         class="price_fractional">.30</span> BYN</span>
-                            </div>
-                            <div class="card_button" style="text-align: center">
-                                <a class="card_offers" style="min-width: 150px; padding: 0"
-                                   href="/detail/10000300-ajusa">
-                                    Подробнее
-                                </a>
-                            </div>
                         </div>
-
-
+                        <div class="card_button" style="text-align: center">
+                            <a class="card_offers" style="min-width: 150px; padding: 0"
+                               href="/detail/10000300-ajusa">
+                                Подробнее
+                            </a>
+                        </div>
                     </div>
-                </main>
-            </div>
 
+
+                </div>
+            </main>
         </div>
+
     </div>
+</div>
+<script src="{% static 'catalog/js/filters.js' %}"></script>
 </body>
