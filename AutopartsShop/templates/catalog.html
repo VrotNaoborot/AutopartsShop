@@ -31,7 +31,7 @@
                                 <option value="0">Выберите марку</option>
                             </select>
                             <div class="choices__list choices__list--single">
-                                <div class="choices__item choices__item--selectable" data-item="" data-id="1"
+                                <div class="choices__item choices__item--selectable" data-item="" data-id="-1"
                                      data-value="0" data-custom-properties="null" aria-selected="true">Выберите марку
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                             <div class="choices__list" role="listbox">
                                 <div id="choices--marks-lm-item-choice-1"
                                      class="choices__item choices__item--choice is-selected choices__item--selectable"
-                                     role="option" data-choice="" data-id="1" data-value="-1" data-select-text=""
+                                     role="option" data-choice="" data-id="-1" data-value="-1" data-select-text=""
                                      data-choice-selectable="" aria-selected="true">
                                     Выберите марку
                                 </div>
@@ -53,13 +53,13 @@
                                 </div>
                                 <div id="choices--marks-lm-item-choice-3"
                                      class="choices__item choices__item--choice is-selected choices__item--selectable"
-                                     role="option" data-choice="" data-id="1" data-value="0" data-select-text=""
+                                     role="option" data-choice="" data-id="2" data-value="0" data-select-text=""
                                      data-choice-selectable="" aria-selected="true">
                                     BMW
                                 </div>
                                 <div id="choices--marks-lm-item-choice-4"
                                      class="choices__item choices__item--choice is-selected choices__item--selectable"
-                                     role="option" data-choice="" data-id="1" data-value="0" data-select-text=""
+                                     role="option" data-choice="" data-id="3" data-value="0" data-select-text=""
                                      data-choice-selectable="" aria-selected="true">
                                     Mercedes
                                 </div>
@@ -94,12 +94,12 @@
                     </div>
                 </div>
 
-                <div class="dynamic-filter">
+                <div id="type" class="dynamic-filter">
                     <div id="filter-types">
                         <h3>Тип товара:</h3>
                         <div class="checkbox-group">
                             <label>
-                                <input type="checkbox" id="filter-part"> Запчасти
+                                <input type="checkbox" id="filter-part" checked> Запчасти
                             </label>
                             <label>
                                 <input type="checkbox" id="filter-accessory"> Аксессуары
@@ -108,76 +108,69 @@
                     </div>
                 </div>
 
-                <div class="dynamic-filter" style="margin-bottom: 10px;">
+                <div id="categories" class="dynamic-filter" style="margin-bottom: 10px;">
                     <span class="filters_section-title">Категория</span>
                     <div class="choices" data-type="select-one" tabindex="0" role="combobox" aria-autocomplete="list"
                          aria-haspopup="true" aria-expanded="false">
                         <div class="choices__inner"><select class="select choices__input" name="brand" hidden=""
                                                             tabindex="-1" data-choice="active">
-                            <option value="AVA QUALITY COOLING">AVA QUALITY COOLING</option>
+                            <option value="AVA QUALITY COOLING">Выберите категорию</option>
                         </select>
                             <div class="choices__list choices__list--single">
-                                <div class="choices__item choices__item--selectable" data-item="" data-id="2"
+                                <div class="choices__item choices__item--selectable" data-item="" data-id="-1"
                                      data-value="AVA QUALITY COOLING" data-custom-properties="null"
-                                     aria-selected="true">AVA QUALITY COOLING
+                                     aria-selected="true">Выберите категорию
                                 </div>
                             </div>
                         </div>
-                        <div class="choices__list choices__list--dropdown" aria-expanded="false"><input type="text"
-                                                                                                        class="choices__input choices__input--cloned"
-                                                                                                        autocomplete="off"
-                                                                                                        autocapitalize="off"
-                                                                                                        spellcheck="false"
-                                                                                                        role="textbox"
-                                                                                                        aria-autocomplete="list"
-                                                                                                        aria-label="Выберите"
-                                                                                                        placeholder=""
+                        <div class="choices__list choices__list--dropdown" aria-expanded="false">
+                            <input type="text" class="choices__input choices__input--cloned" autocomplete="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" aria-label="Выберите" placeholder=""
                                                                                                         aria-activedescendant="choices--brand-ji-item-choice-1">
                             <div class="choices__list" role="listbox">
                                 <div id="choices--brand-ji-item-choice-1"
                                      class="choices__item choices__item--choice choices__placeholder choices__item--selectable is-highlighted"
-                                     role="option" data-choice="" data-id="1" data-value="" data-select-text=""
-                                     data-choice-selectable="" aria-selected="true">Выберите
+                                     role="option" data-choice="" data-id="-" data-value="" data-select-text=""
+                                     data-choice-selectable="" aria-selected="true">Выберите категорию
                                 </div>
                                 <div id="choices--brand-ji-item-choice-2"
                                      class="choices__item choices__item--choice is-selected choices__item--selectable"
-                                     role="option" data-choice="" data-id="2" data-value="AVA QUALITY COOLING"
+                                     role="option" data-choice="" data-id="1" data-value="AVA QUALITY COOLING"
                                      data-select-text="" data-choice-selectable="" aria-selected="false">AVA QUALITY
                                     COOLING
                                 </div>
                                 <div id="choices--brand-ji-item-choice-3"
                                      class="choices__item choices__item--choice choices__item--selectable" role="option"
-                                     data-choice="" data-id="3" data-value="GANZ" data-select-text=""
+                                     data-choice="" data-id="2" data-value="GANZ" data-select-text=""
                                      data-choice-selectable="">GANZ
                                 </div>
                                 <div id="choices--brand-ji-item-choice-4"
                                      class="choices__item choices__item--choice choices__item--selectable" role="option"
-                                     data-choice="" data-id="4" data-value="HYUNDAI/KIA/MOBIS" data-select-text=""
+                                     data-choice="" data-id="3" data-value="HYUNDAI/KIA/MOBIS" data-select-text=""
                                      data-choice-selectable="">HYUNDAI/KIA/MOBIS
                                 </div>
                                 <div id="choices--brand-ji-item-choice-5"
                                      class="choices__item choices__item--choice choices__item--selectable" role="option"
-                                     data-choice="" data-id="5" data-value="LUZAR" data-select-text=""
+                                     data-choice="" data-id="4" data-value="LUZAR" data-select-text=""
                                      data-choice-selectable="">LUZAR
                                 </div>
                                 <div id="choices--brand-ji-item-choice-6"
                                      class="choices__item choices__item--choice choices__item--selectable" role="option"
-                                     data-choice="" data-id="6" data-value="NRF" data-select-text=""
+                                     data-choice="" data-id="5" data-value="NRF" data-select-text=""
                                      data-choice-selectable="">NRF
                                 </div>
                                 <div id="choices--brand-ji-item-choice-7"
                                      class="choices__item choices__item--choice choices__item--selectable" role="option"
-                                     data-choice="" data-id="7" data-value="OSSCA" data-select-text=""
+                                     data-choice="" data-id="6" data-value="OSSCA" data-select-text=""
                                      data-choice-selectable="">OSSCA
                                 </div>
                                 <div id="choices--brand-ji-item-choice-8"
                                      class="choices__item choices__item--choice choices__item--selectable" role="option"
-                                     data-choice="" data-id="8" data-value="PARTS-MALL" data-select-text=""
+                                     data-choice="" data-id="7" data-value="PARTS-MALL" data-select-text=""
                                      data-choice-selectable="">PARTS-MALL
                                 </div>
                                 <div id="choices--brand-ji-item-choice-9"
                                      class="choices__item choices__item--choice choices__item--selectable" role="option"
-                                     data-choice="" data-id="9" data-value="STELLOX" data-select-text=""
+                                     data-choice="" data-id="8" data-value="STELLOX" data-select-text=""
                                      data-choice-selectable="">STELLOX
                                 </div>
                             </div>
@@ -185,7 +178,11 @@
                     </div>
                 </div>
 
+                <div  class="apply-btn" style="visibility: hidden">
+                    Применить
+                </div>
             </div>
+
             <main class="catalog">
                 <h1>Весь каталог
                     <sup class="title-count">

@@ -1,157 +1,202 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const filterContainer = document.getElementById('filter_container');
-    const dropdownList = document.querySelector('.choices__list--dropdown');
-    const selectElement = document.querySelector('.choices__input'); // <select> для обновления значения
-    const selectedTextElement = document.querySelector('.choices__item--selectable'); // Элемент для отображения текущего выбора
+document.addEventListener("DOMContentLoaded", () => {
+    const marksFilter = document.getElementById("marks");
+    const modelsContainer = document.getElementById("models");
+    const categoriesContainer = document.getElementById("categories");
+    const marksDropdown = marksFilter.querySelector(".choices__list--dropdown");
+    const modelsDropdown = modelsContainer.querySelector(".choices__list--dropdown");
+    const categoriesDropdown = categoriesContainer.querySelector(".choices__list--dropdown");
 
-    const modelDropdownList = document.querySelector('#models .choices__list--dropdown'); // Дополнительный выпадающий список для моделей
-    const modelSelectElement = document.querySelector('#models .choices__input'); // <select> для обновления значения модели
-    const modelSelectedTextElement = document.querySelector('#models .choices__item--selectable'); // Элемент для отображения выбранной модели
+    const toggleButtonMarks = marksFilter.querySelector(".choices__inner");
+    const toggleButtonModels = modelsContainer.querySelector(".choices__inner");
+    const toggleButtonCategories = categoriesContainer.querySelector(".choices__inner");
 
-    const brandSelectElement = document.querySelector('#brands .choices__input'); // <select> для марок авто
-    const modelsContainer = document.getElementById('models'); // Блок с моделями
+    const toggleTextMarks = toggleButtonMarks.querySelector(".choices__item");
+    const toggleTextModels = toggleButtonModels.querySelector(".choices__item");
+    const toggleTextCategories = toggleButtonCategories.querySelector(".choices__item");
 
-    // Открытие/закрытие выпадающего списка при клике на фильтр
-    filterContainer.addEventListener('click', (event) => {
-        event.stopPropagation();
-        const isExpanded = dropdownList.classList.toggle('is-active');
-        dropdownList.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+     const applyButton = document.querySelector(".apply-btn");
+
+    // Открытие/закрытие выпадающего списка марок
+    toggleButtonMarks.addEventListener("click", () => {
+        const isActive = marksDropdown.classList.contains("is-active");
+        marksDropdown.classList.toggle("is-active", !isActive);
+        marksDropdown.setAttribute("aria-expanded", String(!isActive));
     });
 
-    // Открытие/закрытие выпадающего списка для моделей
-    document.getElementById('models').addEventListener('click', (event) => {
-        event.stopPropagation();
-        const isExpanded = modelDropdownList.classList.toggle('is-active');
-        modelDropdownList.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-    });
-
-    // Обработка кликов по элементам списка марки
-    const dropdownItems = dropdownList.querySelectorAll('.choices__item');
-    dropdownItems.forEach(item => {
-        item.addEventListener('click', (event) => {
-            event.stopPropagation(); // Чтобы клик не вызвал повторное открытие списка
-
-            // Обновление значения <select>
-            const value = item.getAttribute('data-value');
-            const text = item.textContent.trim();
-            selectElement.innerHTML = `<option value="${value}" selected>${text}</option>`;
-            selectedTextElement.textContent = text;
-
-            // Закрытие выпадающего списка
-            dropdownList.classList.remove('is-active');
-            dropdownList.setAttribute('aria-expanded', 'false');
-
-            // Показать блок с моделями, если выбрана марка
-            // modelsContainer.style.display = 'block'; // Показываем блок с моделями
-            fetchModelsByBrand(value);
-        });
-
-        // Добавляем hover-эффект
-        item.addEventListener('mouseover', () => item.classList.add('is-highlighted'));
-        item.addEventListener('mouseout', () => item.classList.remove('is-highlighted'));
-    });
-
-    // Обработка кликов по элементам списка для моделей
-//    const modelDropdownItems = modelDropdownList.querySelectorAll('.choices__item');
-//    modelDropdownItems.forEach(item => {
-//        item.addEventListener('click', (event) => {
-//            event.stopPropagation(); // Чтобы клик не вызвал повторное открытие списка
-//
-//            // Обновление значения <select> для модели
-//            const value = item.getAttribute('data-value');
-//            const text = item.textContent.trim();
-//            modelSelectElement.innerHTML = `<option value="${value}" selected>${text}</option>`;
-//            modelSelectedTextElement.textContent = text;
-//
-//            console.log('Модель выбрана');
-//
-//            // Закрытие выпадающего списка для моделей
-//            modelDropdownList.classList.remove('is-active');
-//            modelDropdownList.setAttribute('aria-expanded', 'false');
-//        });
-//
-//    });
-
-    // Закрытие выпадающего списка при клике вне контейнера фильтра
-    document.addEventListener('click', (event) => {
-        if (!filterContainer.contains(event.target)) {
-            dropdownList.classList.remove('is-active');
-            dropdownList.setAttribute('aria-expanded', 'false');
-        }
-        // Закрытие выпадающего списка для моделей, если клик вне модели
-        if (!document.getElementById('models').contains(event.target)) {
-            modelDropdownList.classList.remove('is-active');
-            modelDropdownList.setAttribute('aria-expanded', 'false');
+    // Закрытие выпадающего списка марок при клике вне блока
+    document.addEventListener("click", (event) => {
+        if (!marksFilter.contains(event.target)) {
+            marksDropdown.classList.remove("is-active");
+            marksDropdown.setAttribute("aria-expanded", "false");
         }
     });
 
-    function fetchModelsByBrand(brandId) {
-        // Находим элементы, с которыми будем работать
-        const modelsContainer = document.getElementById('models'); // Блок с моделями
-        const modelDropdownList = document.querySelector('#models .choices__list--dropdown'); // Выпадающий список моделей
+    // Открытие/закрытие выпадающего списка моделей
+    toggleButtonModels.addEventListener("click", () => {
+        const isActive = modelsDropdown.classList.contains("is-active");
+        modelsDropdown.classList.toggle("is-active", !isActive);
+        modelsDropdown.setAttribute("aria-expanded", String(!isActive));
+    });
 
-        // Отправляем запрос на сервер для получения моделей для выбранной марки
-        fetch(`/get-models/${brandId}/`)
-            .then(response => {
-                // Проверяем, что ответ успешный (код 200)
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Очистка списка моделей
-                modelDropdownList.innerHTML = '';
+    // Закрытие выпадающего списка моделей при клике вне блока
+    document.addEventListener("click", (event) => {
+        if (!modelsContainer.contains(event.target) && !marksFilter.contains(event.target)) {
+            modelsDropdown.classList.remove("is-active");
+            modelsDropdown.setAttribute("aria-expanded", "false");
+        }
+    });
 
-                // Проверяем, если в ответе есть массив моделей
-                if (Array.isArray(data) && data.length > 0) {
+    // Открытие/закрытие выпадающего списка категорий
+    toggleButtonCategories.addEventListener("click", () => {
+        const isActive = categoriesDropdown.classList.contains("is-active");
+        categoriesDropdown.classList.toggle("is-active", !isActive);
+        categoriesDropdown.setAttribute("aria-expanded", String(!isActive));
+    });
+
+    // Закрытие выпадающего списка категорий при клике вне блока
+    document.addEventListener("click", (event) => {
+        if (!categoriesContainer.contains(event.target) && !marksFilter.contains(event.target) && !modelsContainer.contains(event.target)) {
+            categoriesDropdown.classList.remove("is-active");
+            categoriesDropdown.setAttribute("aria-expanded", "false");
+        }
+    });
+
+    // Логика выбора марки
+    marksDropdown.addEventListener("click", (event) => {
+        const target = event.target.closest(".choices__item");
+        if (target) {
+            const selectedText = target.textContent.trim();
+            const selectedId = target.getAttribute("data-id");
+
+            // Обновляем текст и data-id текущей марки
+            toggleTextMarks.textContent = selectedText;
+            toggleTextMarks.setAttribute("data-id", selectedId);
+
+            applyButton.style.visibility = "visible"; // Делаем кнопку видимой
+
+
+            // Закрываем выпадающий список марок
+            marksDropdown.classList.remove("is-active");
+            marksDropdown.setAttribute("aria-expanded", "false");
+
+            // Отправка запроса на сервер для получения моделей
+            fetch(`/get-models/${selectedId}/`)
+                .then(response => response.json())
+                .then(models => {
+                    // Очистка списка моделей перед отрисовкой
+                    modelsDropdown.innerHTML = '';
+
                     // Добавляем модели в выпадающий список
-                    data.forEach(model => {
+                    models.forEach(model => {
                         const modelItem = document.createElement('div');
-                        modelItem.classList.add('choices__item');
-                        modelItem.classList.add('choices__item--selectable');
-                        modelItem.setAttribute('data-value', model.id);
+                        modelItem.classList.add("choices__item", "choices__item--selectable");
                         modelItem.textContent = model.name;
-
-                         // Добавляем hover-эффект
-                    modelItem.addEventListener('mouseover', () => {
-                        modelItem.classList.add('is-highlighted');
-                    });
-                    modelItem.addEventListener('mouseout', () => {
-                        modelItem.classList.remove('is-highlighted');
+                        modelItem.setAttribute("data-id", model.id);
+                        modelItem.setAttribute("role", "option");
+                        modelsDropdown.appendChild(modelItem);
                     });
 
-                    // Добавляем обработчик клика по модели
-                    modelItem.addEventListener('click', () => {
-                        // Обновление значения <select>
-                        modelSelectElement.innerHTML = `<option value="${model.id}" selected>${model.name}</option>`;
+                    // Показываем блок моделей, если модели доступны
+                    if (models.length > 0) {
+                        modelsContainer.style.display = 'block';
+                    }
 
-                        // Обновляем отображаемый текст
-                        modelSelectedTextElement.textContent = model.name;
+                    // Открываем выпадающий список моделей
+                    modelsDropdown.classList.add("is-active");
+                    modelsDropdown.setAttribute("aria-expanded", "true");
+                })
+                .catch(error => console.error('Ошибка при запросе моделей:', error));
+        }
+    });
 
+    // Логика выбора модели
+    modelsDropdown.addEventListener("click", (event) => {
+        const target = event.target.closest(".choices__item");
+        if (target) {
+            const selectedModelText = target.textContent.trim();
+            const selectedModelId = target.getAttribute("data-id");
 
+            // Обновляем текст и data-id выбранной модели
+            toggleTextModels.textContent = selectedModelText;
+            toggleTextModels.setAttribute("data-id", selectedModelId);
 
-                    });
-                        // Закрытие выпадающего списка для моделей
-                        modelDropdownList.classList.remove('is-active');
-                        modelDropdownList.setAttribute('aria-expanded', 'false');
+            // Закрываем выпадающий список моделей
+            modelsDropdown.classList.remove("is-active");
+            modelsDropdown.setAttribute("aria-expanded", "false");
+        }
+    });
 
-                        modelDropdownList.appendChild(modelItem);
-                    });
+    // Логика выбора категории
+    categoriesDropdown.addEventListener("click", (event) => {
+        const target = event.target.closest(".choices__item");
+        if (target) {
+            const selectedCategoryText = target.textContent.trim();
+            const selectedCategoryId = target.getAttribute("data-id");
 
-                    // Показываем блок с моделями
-                    modelsContainer.style.display = 'block';
-                } else {
-                    console.error('No models found in the response.');
-                    modelsContainer.style.display = 'none'; // Прячем блок с моделями, если их нет
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching models:', error);
-                modelsContainer.style.display = 'none'; // Прячем блок моделей при ошибке
+            // Обновляем текст и data-id выбранной категории
+            toggleTextCategories.textContent = selectedCategoryText;
+            toggleTextCategories.setAttribute("data-id", selectedCategoryId);
+
+            // Закрываем выпадающий список категорий
+            categoriesDropdown.classList.remove("is-active");
+            categoriesDropdown.setAttribute("aria-expanded", "false");
+        }
+    });
+
+    // Добавление is-highlighted при наведении на элементы списка марок
+    marksDropdown.addEventListener("mouseover", (event) => {
+        const target = event.target.closest(".choices__item");
+        if (target) {
+            marksDropdown.querySelectorAll(".choices__item").forEach((item) => {
+                item.classList.remove("is-highlighted");
             });
-    }
+            target.classList.add("is-highlighted");
+        }
+    });
 
+    // Удаление is-highlighted при уходе курсора с марки
+    marksDropdown.addEventListener("mouseout", (event) => {
+        const target = event.target.closest(".choices__item");
+        if (target) {
+            target.classList.remove("is-highlighted");
+        }
+    });
 
+    // Добавление is-highlighted при наведении на элементы списка моделей
+    modelsDropdown.addEventListener("mouseover", (event) => {
+        const target = event.target.closest(".choices__item");
+        if (target) {
+            modelsDropdown.querySelectorAll(".choices__item").forEach((item) => {
+                item.classList.remove("is-highlighted");
+            });
+            target.classList.add("is-highlighted");
+        }
+    });
 
+    // Удаление is-highlighted при уходе курсора с модели
+    modelsDropdown.addEventListener("mouseout", (event) => {
+        const target = event.target.closest(".choices__item");
+        if (target) {
+            target.classList.remove("is-highlighted");
+        }
+    });
+
+    // Добавление is-highlighted при наведении на элементы списка категорий
+    categoriesDropdown.addEventListener("mouseover", (event) => {
+        const target = event.target.closest(".choices__item");
+        if (target) {
+            categoriesDropdown.querySelectorAll(".choices__item").forEach((item) => {
+                item.classList.remove("is-highlighted");
+            });
+            target.classList.add("is-highlighted");
+        }
+    });
+
+    // Удаление is-highlighted при уходе курсора с категории
+    categoriesDropdown.addEventListener("mouseout", (event) => {
+        const target = event.target.closest(".choices__item");
+        if (target) {
+            target.classList.remove("is-highlighted");
+        }
+    });
 });
