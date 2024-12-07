@@ -14,13 +14,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggleTextModels = toggleButtonModels.querySelector(".choices__item");
     const toggleTextCategories = toggleButtonCategories.querySelector(".choices__item");
 
-     const applyButton = document.querySelector(".apply-btn");
+    const applyButton = document.querySelector(".apply-btn");
+
+    // Переменная для отслеживания активного выпадающего меню
+    let activeDropdown = null;
+
+    // Функция для закрытия всех открытых выпадающих меню
+    const closeAllDropdowns = () => {
+        if (activeDropdown) {
+            activeDropdown.classList.remove("is-active");
+            activeDropdown.setAttribute("aria-expanded", "false");
+        }
+    };
 
     // Открытие/закрытие выпадающего списка марок
     toggleButtonMarks.addEventListener("click", () => {
         const isActive = marksDropdown.classList.contains("is-active");
-        marksDropdown.classList.toggle("is-active", !isActive);
-        marksDropdown.setAttribute("aria-expanded", String(!isActive));
+        // Если какое-то меню активно, закрываем его
+        closeAllDropdowns();
+
+        if (!isActive) {
+            marksDropdown.classList.add("is-active");
+            marksDropdown.setAttribute("aria-expanded", "true");
+            activeDropdown = marksDropdown;
+        } else {
+            activeDropdown = null;
+        }
     });
 
     // Закрытие выпадающего списка марок при клике вне блока
@@ -34,8 +53,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Открытие/закрытие выпадающего списка моделей
     toggleButtonModels.addEventListener("click", () => {
         const isActive = modelsDropdown.classList.contains("is-active");
-        modelsDropdown.classList.toggle("is-active", !isActive);
-        modelsDropdown.setAttribute("aria-expanded", String(!isActive));
+        // Если какое-то меню активно, закрываем его
+        closeAllDropdowns();
+
+        if (!isActive) {
+            modelsDropdown.classList.add("is-active");
+            modelsDropdown.setAttribute("aria-expanded", "true");
+            activeDropdown = modelsDropdown;
+        } else {
+            activeDropdown = null;
+        }
     });
 
     // Закрытие выпадающего списка моделей при клике вне блока
@@ -49,8 +76,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Открытие/закрытие выпадающего списка категорий
     toggleButtonCategories.addEventListener("click", () => {
         const isActive = categoriesDropdown.classList.contains("is-active");
-        categoriesDropdown.classList.toggle("is-active", !isActive);
-        categoriesDropdown.setAttribute("aria-expanded", String(!isActive));
+        // Если какое-то меню активно, закрываем его
+        closeAllDropdowns();
+
+        if (!isActive) {
+            categoriesDropdown.classList.add("is-active");
+            categoriesDropdown.setAttribute("aria-expanded", "true");
+            activeDropdown = categoriesDropdown;
+        } else {
+            activeDropdown = null;
+        }
     });
 
     // Закрытие выпадающего списка категорий при клике вне блока
@@ -72,8 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
             toggleTextMarks.textContent = selectedText;
             toggleTextMarks.setAttribute("data-id", selectedId);
 
-            applyButton.style.visibility = "visible"; // Делаем кнопку видимой
-
+            applyButton.style.display = "flex"; // Делаем кнопку видимой
 
             // Закрываем выпадающий список марок
             marksDropdown.classList.remove("is-active");
