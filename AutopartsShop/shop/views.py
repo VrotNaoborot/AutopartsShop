@@ -14,6 +14,12 @@ def test(request):
 
 
 def catalog(request):
+    mark = request.GET.get('mark')
+    model = request.GET.get('model')
+    type_product_list = request.GET.getlist('type')
+    category = request.GET.get('category')
+
+    print(f"MARK: {mark} | MODEL: {model} | TYPE: {type_product_list} | CATEGORY: {category}")
     return render(request, 'catalog.html')
 
 
