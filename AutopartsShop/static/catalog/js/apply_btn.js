@@ -2,26 +2,37 @@ document.addEventListener("DOMContentLoaded", () => {
     const applyButton = document.querySelector(".apply-btn");
 
     applyButton.addEventListener("click", () => {
-        const marksFilter = document.querySelector("#marks .choices__item[data-id]");
-        const modelsFilter = document.querySelector("#models .choices__item[data-id]");
-        const categoriesFilter = document.querySelector("#categories .choices__item[data-id]");
+        // Получаем выбранные значения
+        const marksFilter = document.querySelector("#marks .choices__list--single .choices__item[data-id]:not([data-id='-1'])");
+        const modelsFilter = document.querySelector("#models .choices__list--single .choices__item[data-id]:not([data-id='-1'])");
+        const categoriesFilter = document.querySelector("#categories .choices:nth-of-type(1) .choices__list--single .choices__item[data-id]:not([data-id='-1'])");
+        const subcategoriesFilter = document.querySelector("#categories .choices:nth-of-type(2) .choices__list--single .choices__item[data-id]:not([data-id='-1'])");
 
         const partsCheckbox = document.querySelector("#filter-part");
         const accessoryCheckbox = document.querySelector("#filter-accessory");
 
         const params = new URLSearchParams();
 
-        // Проверяем и добавляем параметры фильтров
-        if (marksFilter && marksFilter.getAttribute("data-id") !== "-1") {
-            params.append("mark", marksFilter.getAttribute("data-id"));
+        // Добавляем параметры фильтров, если они выбраны
+        if (marksFilter) {
+            const markId = marksFilter.getAttribute("data-id");
+            params.append("mark", markId);
         }
 
-        if (modelsFilter && modelsFilter.getAttribute("data-id") !== "-1") {
-            params.append("model", modelsFilter.getAttribute("data-id"));
+        if (modelsFilter) {
+            const modelId = modelsFilter.getAttribute("data-id");
+            params.append("model", modelId);
         }
 
-        if (categoriesFilter && categoriesFilter.getAttribute("data-id") !== "-1") {
-            params.append("category", categoriesFilter.getAttribute("data-id"));
+        if (categoriesFilter) {
+            const categoryId = categoriesFilter.getAttribute("data-id");
+            params.append("category", categoryId);
+        }
+
+        if (subcategoriesFilter) {
+            const subcategoryId = subcategoriesFilter.getAttribute("data-id");
+            params.append("subcategory", subcategoryId);
+            console.log(subcategoryId);
         }
 
         // Проверяем и добавляем состояние чекбоксов
