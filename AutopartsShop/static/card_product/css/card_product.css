@@ -1,0 +1,108 @@
+.card-info-1 {
+    width: 78%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.name-product {
+    font-weight: 700;
+    font-size: 26px;
+}
+
+.main-info {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.photo-gallery {
+  max-width: 50%; /* Ширина галереи */
+}
+
+.main-photo img {
+  width: 100%; /* Основная фотография занимает всю ширину контейнера */
+  border: 1px solid #ddd; /* Рамка */
+  border-radius: 8px; /* Скругление */
+}
+
+.thumbnail-row {
+  display: flex; /* Расположение миниатюр в ряд */
+  justify-content: space-between; /* Пробелы между миниатюрами */
+  margin-top: 10px; /* Отступ от основной фотографии */
+}
+
+.thumbnail-row img {
+  width: 23%; /* Каждая миниатюра занимает 23% ширины */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer; /* Курсор "рука" при наведении */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/************************************/
+
+.card_table-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 7px 0 0
+}
+
+
+.card_table-cell:nth-child(1) {
+    color: #8f8f8f;
+    flex-grow: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+    font-size: 18px;
+}
+
+.card_table-cell:nth-child(2) {
+    flex-grow: 10;
+    height: 13px;
+    border-bottom: 1px solid #ebebeb;
+    margin: 0 10px
+}
+
+.card_table-cell:nth-child(3) {
+    flex-grow: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+    font-size: 18px;
+}
+
+.product-action {
+    width: 20%;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.product-cont-price {
+    font-size: 20px;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid #ebebeb;
+    padding: 10px;
+    font-weight: 700;
+    width: fit-content;
+}
+
+.product-to-cart {
+    display: flex;
+    justify-content: center; /* Горизонтальное выравнивание */
+    align-items: center; /* Вертикальное выравнивание */
+    font-weight: 700;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid #ebebeb;
+    padding: 10px;
+}

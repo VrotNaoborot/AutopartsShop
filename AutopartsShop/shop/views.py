@@ -40,6 +40,10 @@ def catalog(request):
     return render(request, 'catalog.html', context=context)
 
 
+def card_product(request):
+    return render(request, 'card_product.html')
+
+
 def get_models_by_brand(request, brand_id):
     # Заглушка
     return JsonResponse(

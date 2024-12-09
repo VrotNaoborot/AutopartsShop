@@ -1,0 +1,63 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'main-header/css/main-header.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'footer_down/css/footer_down.css' %}">
+    <link rel="stylesheet" href="{% static 'card_product/css/card_product.css' %}">
+</head>
+<body>
+    <div class="main-container">
+        {% include 'main_header.html' %}
+    </div>
+    <div class="main-container">
+        <div style="display: flex">
+            <div class="card-info-1">
+                <div class="name-product">34169 NRF Вентилятор системы кондиционирования</div>
+                <div class="main-info">
+                    <div class="photo-gallery">
+                        <div class="main-photo">
+                            <img src="/media/1.jpeg" alt="Основное изображение">
+                        </div>
+                        <div class="thumbnail-row">
+                            <img src="/media/1.jpeg" alt="Миниатюра 1">
+                            <img src="/media/1.jpeg" alt="Миниатюра 2">
+                            <img src="/media/1.jpeg" alt="Миниатюра 3">
+                            <img src="/media/1.jpeg" alt="Миниатюра 4">
+                        </div>
+                    </div>
+                    <div class="card-data">
+                        <div class="card_table-row" style="margin: 4px 0 0;">
+                            <span class="card_table-cell">Производитель</span>
+                            <div class="card_table-cell"></div>
+                            <span class="card_table-cell">Lucoil</span>
+                        </div>
+                        <div class="card_table-row">
+                            <span class="card_table-cell">Артикул</span>
+                            <div class="card_table-cell"></div>
+                            <span class="card_table-cell">312576</span>
+                        </div>
+                        <div class="card_table-row">
+                            <span class="card_table-cell">Страна производства</span>
+                            <div class="card_table-cell"></div>
+                            <span class="card_table-cell">Нидерланды</span>
+                        </div>
+                        <div class="card_table-row">
+                            <span class="card_table-cell">Вес</span>
+                            <div class="card_table-cell"></div>
+                            <span class="card_table-cell">450 г.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-action">
+                <div class="product-cont-price">5 000 Р</div>
+                <div class="product-to-cart">Добавить в корзину</div>
+                <div class="product-date-order">Доставим <span>12 декабря</span></div>
+            </div>
+
+        </div>
+    </div>
+</body>
