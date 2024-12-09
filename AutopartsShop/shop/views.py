@@ -32,6 +32,7 @@ def catalog(request):
     if model:
         all_products = all_products.filter(Q(model_id=model) | Q(model_id__isnull=True))
 
+    print(all_products)
     context = {
         'products': all_products,
         'count_products': len(all_products)

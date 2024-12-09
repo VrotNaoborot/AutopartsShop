@@ -14,9 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from shop.views import *
+from AutopartsShop import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +27,4 @@ urlpatterns = [
     path('catalog/', catalog),
     path('get-models/<int:brand_id>/', get_models_by_brand),
     path('get-subcategories/<int:subcategories_id>/', get_subcategories),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

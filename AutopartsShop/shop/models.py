@@ -75,6 +75,7 @@ class Product(models.Model):
         ('parts', 'Запчасть'),
         ('accessory', 'Аксессуар')
     ]
+    article = models.CharField(max_length=25, verbose_name="Артикул")
     img = models.ImageField(verbose_name="Изображение")
     name = models.CharField(max_length=150, verbose_name="Название товара")
     type_product = models.CharField(max_length=50, choices=TYPE_PRODUCT_CHOICES, verbose_name="Тип продукта")
@@ -85,6 +86,7 @@ class Product(models.Model):
     subcategory = models.ForeignKey(Subcategories, verbose_name="Подкатегория", on_delete=models.CASCADE)
     attributes = models.ManyToManyField(Attribute, related_name="categories", verbose_name="Атрибуты")
     weight = models.IntegerField(verbose_name="Вес товара")
+    description = models.CharField(max_length=1000, verbose_name="Описание")
 
     def __str__(self):
         return f"{self.name}"

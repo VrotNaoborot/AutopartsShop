@@ -190,45 +190,46 @@
                         14 шт
                     </sup>
                 </h1>
-
-
-                <div class="card">
+                {% for product in products %}
+                    <div class="card">
                     <div class="card_left" style="font-size: 13px">
 
                         <a href="/detail/10000300-ajusa">
                             <div style="text-align: center; margin-bottom: 15px">
-                                <img loading="lazy" src="https://av-parts.by/images/large/nrf/34204-nrf.jpeg"
-                                     alt="Прокладка ГБЦ AJUSA 10000300" class="card_image"
+                                <img loading="lazy" src="{{ product.img.url }}"
+                                     alt="{{ product.name }}" class="card_image"
                                      style="max-height: 200px">
                             </div>
                         </a>
 
                         <div class="card_data" style="margin: 0 0 10px">
-                            <a href="/detail/10000300-ajusa" class="card_title">Прокладка ГБЦ AJUSA 10000300</a>
+                            <a href="/detail/10000300-ajusa" class="card_title">{{ product.name }}</a>
+                            {%  if product.brand %}
                             <div class="card_table-row" style="margin: 4px 0 0;">
                                 <span class="card_table-cell">Брэнд</span>
                                 <div class="card_table-cell"></div>
-                                <span class="card_table-cell">AJUSA</span>
+                                <span class="card_table-cell">{{ product.brand.name }}</span>
                             </div>
+                            {% endif %}
                             <div class="card_table-row">
                                 <span class="card_table-cell">Артикул</span>
                                 <div class="card_table-cell"></div>
-                                <span class="card_table-cell">10000300</span>
+                                <span class="card_table-cell">{{ product.article }}</span>
                             </div>
 
                             <div class="card_table-row">
-                                <span class="card_table-cell">Страна бренда</span>
+                                <span class="card_table-cell">Страна производителя</span>
                                 <div class="card_table-cell"></div>
-                                <span class="card_table-cell">Испания</span>
+                                <span class="card_table-cell">{{ product.manufacture.country }}</span>
                             </div>
 
                             <div class="card_table-row">
                                 <span class="card_table-cell">Вес [г]</span>
                                 <div class="card_table-cell"></div>
-                                <span class="card_table-cell">120</span>
+                                <span class="card_table-cell">{{ product.weight }}</span>
                             </div>
                             <div class="card_table-row" style="font-size: 14px;margin-top: 5px">
-                                <span><b>Краткое описание: </b> OPEL: CORSA A TR 1.0 82-93, CORSA A Наклонная задняя часть 1.0 82-93, CORSA A фургон 1.0 86-94, KADETT C 1.0 73-79, KADETT C City 1.0 73-79,</span>
+                                <span><b>Краткое описание: </b> {{ product.description }}</span>
                             </div>
                         </div>
                     </div>
@@ -238,7 +239,7 @@
                             <span class="in-stock">В наличии</span>
                         </div>
                         <div class="card_price" style="text-align: center;margin: 10px 0 15px">
-                            <span class="price">от <span class="price_value">2000</span> ₽</span>
+                            <span class="price"><span class="price_value">{{ product.price }}</span> ₽</span>
                         </div>
                         <div class="card_button" style="text-align: center">
                             <a class="card_offers" style="min-width: 150px; padding: 0"
@@ -250,6 +251,7 @@
 
 
                 </div>
+                {% endfor %}
             </main>
         </div>
 
