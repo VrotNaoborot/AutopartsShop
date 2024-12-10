@@ -1,5 +1,5 @@
 .card-info-1 {
-    width: 78%;
+    flex-grow: 0;         /* Не растягиваем */
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -8,13 +8,18 @@
 .name-product {
     font-weight: 700;
     font-size: 26px;
+    display: inline-block;  /* Занимает только ширину, необходимую для текста */
+    align-self: flex-start;  /* Устанавливает выравнивание по началу */
+    white-space: nowrap;  /* Запрещает перенос текста */
 }
 
 .main-info {
-    width: 100%;
-    display: flex;
+    display: inline-flex;
     gap: 20px;
+    box-sizing: border-box;
 }
+
+
 
 .photo-gallery {
   max-width: 50%; /* Ширина галереи */
@@ -61,7 +66,7 @@
 }
 
 .card_table-cell:nth-child(2) {
-    flex-grow: 10;
+    flex-grow: 1;
     height: 13px;
     border-bottom: 1px solid #ebebeb;
     margin: 0 10px
@@ -77,13 +82,12 @@
 }
 
 .product-action {
-    width: 20%;
+    width: 25%;
     border: 1px solid #ebebeb;
     border-radius: 5px;
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    min-width: 230px;
 }
 
 .product-cont-price {
@@ -94,9 +98,12 @@
     padding: 10px;
     font-weight: 700;
     width: fit-content;
+    background-color: var(--blue-color);
+    color: white;
 }
 
 .product-to-cart {
+    margin-top: 20px;
     display: flex;
     justify-content: center; /* Горизонтальное выравнивание */
     align-items: center; /* Вертикальное выравнивание */
@@ -105,4 +112,102 @@
     border-radius: 5px;
     border: 1px solid #ebebeb;
     padding: 10px;
+    color: white;
+    background-color: var(--red-color);
+    cursor: pointer;
+    width: 100%; /* Заставляет кнопку занимать всю доступную ширину */
+    box-sizing: border-box; /* Учитывает padding и border в расчете ширины */
+}
+
+
+.valute {
+    margin-left: 5px;
+}
+
+.text-date {
+    font-weight: 600;
+}
+
+.product-date-order {
+    margin-top: 10px;
+    font-size: 16px;
+    margin-left: 25px;
+    padding-bottom: 5px;
+}
+
+.product-buy-one-click {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center; /* Горизонтальное выравнивание */
+    align-items: center; /* Вертикальное выравнивание */
+    border-radius: 5px;
+    padding: 10px;
+    color: var(--blue-color);
+    background-color: rgba(102, 188, 214, 0.2);
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    width: 100%; /* Заставляет кнопку занимать всю доступную ширину */
+    box-sizing: border-box; /* Учитывает padding и border в расчете ширины */
+}
+
+
+.parameter-label {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.parameters {
+    width: 70%;
+}
+
+.product-in-cart {
+    margin-top: 20px;
+    display: flex;
+    align-items: stretch; /* Дочерние элементы растягиваются по высоте */
+    gap: 10px; /* Расстояние между элементами */
+}
+
+.btn-in-cart {
+    padding: 10px; /* Внутренние отступы */
+    background-color: var(--red-color);
+    color: white;
+    border-radius: 5px;
+    border: 1px solid #ebebeb;
+    flex-grow: 1; /* Занимаем всю доступную ширину */
+    display: flex;
+    justify-content: center; /* Горизонтальное выравнивание текста */
+    align-items: center; /* Вертикальное выравнивание текста */
+    height: 100%; /* Обеспечиваем полное растяжение по высоте */
+    font-weight: 700;
+}
+
+.change-value {
+    justify-content: center; /* Горизонтальное выравнивание */
+    align-items: center; /* Вертикальное выравнивание */
+    background-color: var(--blue-color);
+    padding: 5 12px;
+    border: 1px solid #ebebeb;
+    font-size: 26px;
+    color: white;
+    border-radius: 5px;
+}
+
+.value-controls {
+    display: flex;
+    align-items: center; /* Центрируем "плюс", "значение" и "минус" вертикально */
+    margin-left: auto; /* Перемещаем контейнер с этими элементами в конец */
+}
+
+.count-in-cart {
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    justify-content: center; /* Горизонтальное выравнивание */
+    align-items: center; /* Вертикальное выравнивание */
+    margin: 0 10px; /* Расстояние от кнопок "+" и "-" */
+    border: 1px solid #ebebeb;
+    border-radius: 5px; /* Округленные углы для эстетики */
 }

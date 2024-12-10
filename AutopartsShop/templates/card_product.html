@@ -13,7 +13,7 @@
         {% include 'main_header.html' %}
     </div>
     <div class="main-container">
-        <div style="display: flex">
+        <div style="display: flex;align-items: flex-start;justify-content: space-between;">
             <div class="card-info-1">
                 <div class="name-product">34169 NRF Вентилятор системы кондиционирования</div>
                 <div class="main-info">
@@ -51,13 +51,59 @@
                         </div>
                     </div>
                 </div>
+                <div class="parameters">
+                    <div class="parameter-label">Технические характеристики</div>
+                    <div class="card-data">
+                        <div class="card_table-row" style="margin: 4px 0 0;">
+                            <span class="card_table-cell">Производитель</span>
+                            <div class="card_table-cell"></div>
+                            <span class="card_table-cell">Lucoil</span>
+                        </div>
+                        <div class="card_table-row">
+                            <span class="card_table-cell">Артикул</span>
+                            <div class="card_table-cell"></div>
+                            <span class="card_table-cell">312576</span>
+                        </div>
+                        <div class="card_table-row">
+                            <span class="card_table-cell">Страна производства</span>
+                            <div class="card_table-cell"></div>
+                            <span class="card_table-cell">Нидерланды</span>
+                        </div>
+                        <div class="card_table-row">
+                            <span class="card_table-cell">Вес</span>
+                            <div class="card_table-cell"></div>
+                            <span class="card_table-cell">450 г.</span>
+                        </div>
+                    </div>
+                </div >
             </div>
             <div class="product-action">
-                <div class="product-cont-price">5 000 Р</div>
-                <div class="product-to-cart">Добавить в корзину</div>
-                <div class="product-date-order">Доставим <span>12 декабря</span></div>
-            </div>
+                <div style="border-bottom: 1px solid #ebebeb;display: flex;flex-direction: column;">
+                    <div style="padding-left: 20px;padding-top: 20px">
+                        <div class="product-cont-price">5 000 <span class="valute"> ₽</span></div>
+                    </div>
+                    <div style="padding-left: 20px;padding-right: 20px;">
+                        <button class="product-to-cart" style="display: block">Добавить в корзину</button>
+                    </div>
+                    <div style="padding-left: 20px; padding-right: 20px;">
+                        <div class="product-in-cart" style="display: none">
+                            <button class="btn-in-cart">В корзине</button>
+                            <div class="value-controls">
+                                <button class="change-value" id="minus">-</button>
+                                <div class="count-in-cart">2</div>
+                                <button class="change-value" id="plus">+</button>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="product-date-order">Доставим: <span class="text-date">12 декабря</span></div>
+                </div>
+                <div style="padding:0 20px; padding-bottom: 20px;">
+                    <button class="product-buy-one-click">Купить в один клик</button>
+                </div>
+            </div>
         </div>
     </div>
+    {% include 'footer_down.html' %}
+    <script src="{% static 'card_product/js/scripts.js' %}"></script>
 </body>
