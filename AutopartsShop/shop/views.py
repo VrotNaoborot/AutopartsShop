@@ -72,3 +72,7 @@ def get_subcategories(request, subcategories_id):
         ],
         safe=False
     )
+
+
+def cart(request):
+    return render(request, 'cart.html')
