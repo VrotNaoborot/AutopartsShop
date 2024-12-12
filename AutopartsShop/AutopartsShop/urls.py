@@ -29,6 +29,9 @@ urlpatterns = [
     path('get-subcategories/<int:subcategories_id>/', get_subcategories),
     path('card-product/', card_product),
     path('cart/', cart),
-    path('login/', login_view),
-    path('register/', login_view),
+    path('login/', login_view, name='login'),
+    path('register/', register_view, name='register'),
+    path('registrate/', register),
+    path('login-user/', login, name='login-user'),
+    path('logout/', user_logout, name='logout')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

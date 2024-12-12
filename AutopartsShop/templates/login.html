@@ -7,38 +7,99 @@
     <title>Login Page</title>
     <!-- Подключение стилей -->
     <link rel="stylesheet" href="{% static 'login/css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/global.css' %}">
     <!-- Подключение шрифта Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'global/css/global.css' %}">
     <!-- Подключение Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
-    <div class="screen-1">
-        <div style="display: flex; justify-content: center; align-items: center;">
-            <img src="{% static 'main-header/img/logo.png' %}" class="logo" alt="Logo">
-        </div>
-        <div class="email">
-            <label for="email">Email Address</label>
-            <div class="sec-2">
-                <ion-icon name="mail-outline"></ion-icon>
-                <input type="email" name="email" placeholder="Username@gmail.com">
+<div class="main-box">
+    <form method="POST" action="{% url 'login-user' %}">
+        {% csrf_token %}
+        <div class="form-box">
+            <div style="display: flex; justify-content: center;align-items:center;">
+                <img src="{% static 'main-header/img/logo.png' %}" class="logo">
+            </div>
+
+            <!-- Блок для вывода ошибок формы -->
+            {% if form.non_field_errors %}
+                <div class="error">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="form-input" id="email">
+                <div class="form-label">Почта</div>
+                <div class="form-sec">
+                    <div style="height: 20px; width: 20px;margin-bottom: -2px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon s-ion-icon" viewBox="0 0 512 512">
+                            <title>Mail</title>
+                            <rect x="48" y="96" width="416" height="320" rx="40" ry="40"
+                                  stroke="black" fill="none" stroke-width="15" stroke-linecap="round"
+                                  stroke-linejoin="round"></rect>
+                            <path d="M112 160l144 112 144-112"
+                                  stroke="black" fill="none" stroke-width="15" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <input type="text" name="username" class="inp" placeholder="Username@gmail.com"
+                           value="{{ form.username.value|default:'' }}">
+                </div>
+                {% if form.username.errors %}
+                    <div class="error">
+                        {% for error in form.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-input" id="password">
+                <div class="form-label">Пароль</div>
+                <div class="form-sec">
+                    <div style="height: 20px; width: 20px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon s-ion-icon" viewBox="0 0 512 512">
+                            <title>Lock Closed</title>
+                            <path d="M336 208v-95a80 80 0 00-160 0v95" stroke-linecap="round" stroke-linejoin="round"
+                                  fill="none" stroke="black" stroke-width="15"></path>
+                            <rect x="96" y="208" width="320" height="272" rx="48" ry="48" stroke-linecap="round"
+                                  stroke-linejoin="round" fill="none" stroke="black" stroke-width="15"></rect>
+                        </svg>
+                    </div>
+                    <input type="password" id="password-input" name="password" class="inp" placeholder="•••••••••••">
+                    <div style="height: 16px; width: 16px; margin-top: 3px; cursor: pointer;" id="toggle-password">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon s-ion-icon" viewBox="0 0 512 512">
+                            <title>Eye</title>
+                            <path d="M255.66 112c-77.94 0-157.89 45.11-220.83 135.33a16 16 0 00-.27 17.77C82.92 340.8 161.8 400 255.66 400c92.84 0 173.34-59.38 221.79-135.25a16.14 16.14 0 000-17.47C428.89 172.28 347.8 112 255.66 112z"
+                                  stroke-linecap="round" stroke-linejoin="round" class="ionicon-fill-none ionicon-stroke-width" fill="none" stroke="black" stroke-width="15"></path>
+                            <circle cx="256" cy="256" r="80" stroke-miterlimit="10" class="ionicon-fill-none ionicon-stroke-width" fill="none" stroke="black" stroke-width="15"></circle>
+                        </svg>
+                    </div>
+                </div>
+                {% if form.password.errors %}
+                    <div class="error">
+                        {% for error in form.password.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="form-btn" id="login">
+                Войти
+            </button>
+
+            <div class="footer">
+                <a href="{% url 'register' %}"><span class="foot">Регистрация</span></a>
             </div>
         </div>
-        <div class="password">
-            <label for="password">Password</label>
-            <div class="sec-2">
-                <ion-icon name="lock-closed-outline"></ion-icon>
-                <input class="pas" type="password" name="password" placeholder="············">
-                <ion-icon class="show-hide" name="eye-outline"></ion-icon>
-            </div>
-        </div>
-        <button class="login">Login</button>
-        <div class="footer">
-            <span>Sign up</span>
-            <span>Forgot Password?</span>
-        </div>
-    </div>
+    </form>
+</div>
+<script src="{% static 'register/js/view_pass.js' %}"></script>
+
 </body>
 </html>

@@ -1,0 +1,105 @@
+/* Переменные */
+:root {
+  --p: hsl(213deg 85% 97%);
+  --s: hsl(233deg 36% 38%);
+}
+
+* {
+  font-family: 'Poppins';
+}
+
+body {
+  user-select: none;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(230, 57, 70, 0.1);
+  height: 100vh;
+}
+
+.screen-1 {
+  background: rgba(230, 57, 70, 0.1);
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  box-shadow: 0 0 2em hsl(231deg 62% 94%);
+  gap: 2em;
+}
+
+
+.screen-1 .email,
+.screen-1 .password {
+  background: hsl(0deg 0% 100%);
+  box-shadow: 0 0 2em hsl(231deg 62% 94%);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  border-radius: 20px;
+  color: hsl(0deg 0% 30%);
+}
+
+.screen-1 .email input,
+.screen-1 .password input {
+  outline: none;
+  border: none;
+}
+
+.screen-1 .email input::placeholder,
+.screen-1 .password input::placeholder {
+  color: hsl(0deg 0% 0%);
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.screen-1 .password input::placeholder {
+    font-size: 26px;
+}
+
+.screen-1 .email ion-icon,
+.screen-1 .password ion-icon {
+  color: hsl(0deg 0% 30%);
+  margin-bottom: -0.2em;
+}
+
+.screen-1 .password .show-hide {
+  margin-right: -5em;
+  margin-left: 30px;
+}
+
+.screen-1 .login {
+  padding: 1em;
+  background: var(--red-color);
+  color: hsl(0 0 100%);
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+.screen-1 .footer {
+  display: flex;
+  font-size: 0.7em;
+  color: hsl(0deg 0% 37%);
+  gap: 14em;
+  padding-bottom: 10em;
+}
+
+.screen-1 .footer span {
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+.logo {
+    height: 90px;
+    width: auto;
+}
+
+.pas {
+    font-size: 16px;
+}
+

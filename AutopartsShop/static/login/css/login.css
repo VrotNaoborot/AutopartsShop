@@ -1,97 +1,21 @@
-/* Переменные */
-:root {
-  --p: hsl(213deg 85% 97%);
-  --s: hsl(233deg 36% 38%);
+.main-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Задаем высоту окна браузера */
+    background-color: rgba(230, 57, 70, 0.1);
+    margin: 0; /* Убираем отступы */
+    gap: 20px;
 }
 
-* {
-  font-family: 'Poppins';
-}
-
-body {
-  user-select: none;
-  overflow-y: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(230, 57, 70, 0.1);
-  height: 100vh;
-}
-
-.screen-1 {
-  background: rgba(230, 57, 70, 0.1);
-  padding: 2em;
-  display: flex;
-  flex-direction: column;
-  border-radius: 30px;
-  box-shadow: 0 0 2em hsl(231deg 62% 94%);
-  gap: 2em;
-}
-
-
-.screen-1 .email,
-.screen-1 .password {
-  background: hsl(0deg 0% 100%);
-  box-shadow: 0 0 2em hsl(231deg 62% 94%);
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  border-radius: 20px;
-  color: hsl(0deg 0% 30%);
-}
-
-.screen-1 .email input,
-.screen-1 .password input {
-  outline: none;
-  border: none;
-}
-
-.screen-1 .email input::placeholder,
-.screen-1 .password input::placeholder {
-  color: hsl(0deg 0% 0%);
-  font-size: 10px;
-  font-weight: 900;
-}
-
-.screen-1 .password input::placeholder {
-    font-size: 26px;
-}
-
-.screen-1 .email ion-icon,
-.screen-1 .password ion-icon {
-  color: hsl(0deg 0% 30%);
-  margin-bottom: -0.2em;
-}
-
-.screen-1 .password .show-hide {
-  margin-right: -5em;
-  margin-left: 30px;
-}
-
-.screen-1 .login {
-  padding: 1em;
-  background: var(--red-color);
-  color: hsl(0 0 100%);
-  border: none;
-  border-radius: 30px;
-  font-weight: 600;
-}
-
-.screen-1 .footer {
-  display: flex;
-  font-size: 0.7em;
-  color: hsl(0deg 0% 37%);
-  gap: 14em;
-  padding-bottom: 10em;
-}
-
-.screen-1 .footer span {
-  cursor: pointer;
-}
-
-button {
-  cursor: pointer;
+.form-box {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: rgba(230, 57, 70, 0.1);
+    box-shadow: 0 0 2em hsl(231deg 62% 94%);
+    border-radius: 30px;
+    gap: 20px;
 }
 
 .logo {
@@ -99,7 +23,66 @@ button {
     width: auto;
 }
 
-.pas {
+.form-input {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    gap: 6px
+}
+
+.form-btn {
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--red-color);
+    color: white;
+    font-weight: 600;
+    border: none;
+}
+
+.form-label {
+    font-size: 14px;
+    color: rgba(148, 144, 144, 0.8);
+    font-weight: 550;
+}
+
+.form-sec {
+    display: flex;
+}
+
+.inp {
+    border: none;
+}
+
+.inp:focus {
+    border: none;
+    outline: none; /* Убирает подсветку */
+
+}
+
+input[type="password"]::placeholder {
     font-size: 16px;
 }
 
+input {
+    font-size: 16px;
+}
+
+.footer {
+    display: flex;
+    color: rgba(148, 144, 144, 0.9);    justify-content: space-between; /* Размещение элементов по краям */
+    cursor: pointer;
+    font-weight: 500;
+}
+
+a {
+    text-decoration: none; /* Убирает подчеркивание */
+    color: inherit; /* Цвет будет унаследован от родительского элемента */
+}
+
+.foot {
+    color: rgba(148, 144, 144, 0.9);
+}

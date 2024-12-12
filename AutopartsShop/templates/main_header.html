@@ -27,7 +27,11 @@
         </div>
         <div class="auth-cart">
             <div class="auth">
-                <a href="/login">Авторизация</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}">Выйти</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Авторизация</a>
+                {% endif %}
             </div>
             <div class="cart">
                 <a href="/cart">Корзина</a>
@@ -35,4 +39,3 @@
         </div>
     </div>
 </header>
-
