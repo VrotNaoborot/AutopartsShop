@@ -28,5 +28,6 @@ urlpatterns = [
     path('get-models/<int:brand_id>/', get_models_by_brand),
     path('get-subcategories/<int:subcategories_id>/', get_subcategories),
     path('card-product/', card_product),
-    path('cart/', cart)
+    path('cart/', cart),
+    path('login/', login_view)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -76,3 +76,7 @@ def get_subcategories(request, subcategories_id):
 
 def cart(request):
     return render(request, 'cart.html')
+
+
+def login_view(request):
+    return render(request, 'login.html')
