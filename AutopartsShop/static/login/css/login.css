@@ -50,7 +50,12 @@ body {
 .screen-1 .email input::placeholder,
 .screen-1 .password input::placeholder {
   color: hsl(0deg 0% 0%);
-  font-size: 0.9em;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.screen-1 .password input::placeholder {
+    font-size: 26px;
 }
 
 .screen-1 .email ion-icon,
@@ -61,6 +66,7 @@ body {
 
 .screen-1 .password .show-hide {
   margin-right: -5em;
+  margin-left: 30px;
 }
 
 .screen-1 .login {
@@ -97,7 +103,3 @@ button {
     font-size: 16px;
 }
 
-.pas::placeholder {
-    font-size: 24px;
-    font-weight: 900;
-}
