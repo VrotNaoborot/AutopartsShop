@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Brand(models.Model):
@@ -36,11 +37,12 @@ class Manufacture(models.Model):
 
 
 class Attribute(models.Model):
-    unit = models.CharField(max_length=100, verbose_name="Единица")
+    name = models.CharField(max_length=100, verbose_name="Название")
     value = models.CharField(max_length=100, verbose_name="Значение")
+    key = models.CharField(max_length=100, verbose_name="Ед.измерения")
 
     def __str__(self):
-        return f"{self.unit} {self.value}"
+        return f"{self.name} {self.value} {self.key}"
 
     class Meta:
         verbose_name = "Атрибут"
@@ -76,7 +78,11 @@ class Product(models.Model):
         ('accessory', 'Аксессуар')
     ]
     article = models.CharField(max_length=25, verbose_name="Артикул")
-    img = models.ImageField(verbose_name="Изображение")
+    img1 = models.ImageField(verbose_name="Изображение1")
+    img2 = models.ImageField(verbose_name="Изображение2")
+    img3 = models.ImageField(verbose_name="Изображение3")
+    img4 = models.ImageField(verbose_name="Изображение4")
+    img5 = models.ImageField(verbose_name="Изображение5")
     name = models.CharField(max_length=150, verbose_name="Название товара")
     type_product = models.CharField(max_length=50, choices=TYPE_PRODUCT_CHOICES, verbose_name="Тип продукта")
     brand = models.ForeignKey(Brand, verbose_name="Бренд авто", on_delete=models.CASCADE, null=True, blank=True)
@@ -94,3 +100,30 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
+
+
+class Cart(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+
+    def __str__(self):
+        return f"Корзина {self.user.username}"
+
+    @property
+    def total_price(self):
+        """Рассчитывает общую стоимость корзины."""
+        return sum(item.total_price for item in self.items.all())
+
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, related_name="items", on_delete=models.CASCADE, verbose_name="Корзина")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Товар")
+    quantity = models.PositiveIntegerField(default=1, verbose_name="Количество")
+
+    def __str__(self):
+        return f"{self.product.name} ({self.quantity})"
+
+    @property
+    def total_price(self):
+        """Рассчитывает общую стоимость товара в корзине."""
+        return self.product.price * self.quantity

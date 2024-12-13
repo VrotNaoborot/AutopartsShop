@@ -1,5 +1,6 @@
 import json
-
+from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from django.http import JsonResponse
@@ -48,8 +49,10 @@ def catalog(request):
     return render(request, 'catalog.html', context=context)
 
 
-def card_product(request):
-    return render(request, 'card_product.html')
+def card_product(request, card_id):
+    product = Product.objects.get(id=card_id)
+    attributes = product.attributes.all()
+    return render(request, 'card_product.html', context={'product': product, 'attributes': attributes})
 
 
 def get_models_by_brand(request, brand_id):
@@ -82,8 +85,50 @@ def get_subcategories(request, subcategories_id):
     )
 
 
+@login_required
 def cart(request):
-    return render(request, 'cart.html')
+    # Получаем корзину пользователя
+    cart = Cart.objects.filter(user=request.user).first()
+
+    if cart:
+        # Оптимизируем запросы, чтобы не делать дополнительные обращения к базе
+        items = CartItem.objects.filter(cart=cart).select_related('product')
+    else:
+        items = []
+
+    # Формируем контекст для шаблона
+    context = {
+        'items': items,
+        'total_price': cart.total_price
+    }
+
+    return render(request, 'cart.html', context=context)
+
+
+@require_POST
+def add_to_cart(request):
+    data = json.loads(request.body)
+    product_id = data.get('product_id')
+
+    if not request.user.is_authenticated:
+        return JsonResponse({'error': 'Необходимо авторизоваться для добавления товара в корзину'}, status=403)
+
+    product = get_object_or_404(Product, id=product_id)
+
+    cart, created = Cart.objects.get_or_create(user=request.user)
+
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+
+    if not created:
+        # Если элемент уже есть, увеличиваем количество
+        cart_item.quantity += 1
+        cart_item.save()
+
+    return JsonResponse({
+        'message': 'Товар успешно добавлен в корзину',
+        'product_id': product.id,
+        'quantity': cart_item.quantity,
+    })
 
 
 def login_view(request):

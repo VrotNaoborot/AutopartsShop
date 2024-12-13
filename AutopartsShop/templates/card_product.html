@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'global/css/global.css' %}">
     <link rel="stylesheet" href="{% static 'footer_down/css/footer_down.css' %}">
     <link rel="stylesheet" href="{% static 'card_product/css/card_product.css' %}">
+    <meta name="csrf-token" content="{{ csrf_token }}">
 </head>
 <body>
     <div class="main-container">
@@ -15,66 +16,55 @@
     <div class="main-container">
         <div style="display: flex;align-items: flex-start;justify-content: space-between;">
             <div class="card-info-1">
-                <div class="name-product">34169 NRF Вентилятор системы кондиционирования</div>
-                <div class="main-info">
+                <div class="name-product">{{ product.article }} {{ product.name }}</div>
+                <div class="main-info" >
                     <div class="photo-gallery">
                         <div class="main-photo">
-                            <img src="/media/123.jpeg" alt="Основное изображение">
+                            <img src="{{ product.img1.url }}" alt="Основное изображение">
                         </div>
                         <div class="thumbnail-row">
-                            <img src="/media/123.jpeg" alt="Миниатюра 1">
-                            <img src="/media/123.jpeg" alt="Миниатюра 2">
-                            <img src="/media/123.jpeg" alt="Миниатюра 3">
-                            <img src="/media/123.jpeg" alt="Миниатюра 4">
+                            <img src="{{ product.img2.url }}" alt="Миниатюра 1">
+                            <img src="{{ product.img3.url }}" alt="Миниатюра 2">
+                            <img src="{{ product.img4.url }}" alt="Миниатюра 3">
+                            <img src="{{ product.img5.url }}" alt="Миниатюра 4">
                         </div>
                     </div>
                     <div class="card-data">
                         <div class="card_table-row" style="margin: 4px 0 0;">
                             <span class="card_table-cell">Производитель</span>
                             <div class="card_table-cell"></div>
-                            <span class="card_table-cell">Lucoil</span>
+                            <span class="card_table-cell">{{ product.manufacture.name }}</span>
                         </div>
                         <div class="card_table-row">
                             <span class="card_table-cell">Артикул</span>
                             <div class="card_table-cell"></div>
-                            <span class="card_table-cell">312576</span>
+                            <span class="card_table-cell">{{ product.article }}</span>
                         </div>
                         <div class="card_table-row">
                             <span class="card_table-cell">Страна производства</span>
                             <div class="card_table-cell"></div>
-                            <span class="card_table-cell">Нидерланды</span>
+                            <span class="card_table-cell">{{ product.manufacture.country }}</span>
                         </div>
                         <div class="card_table-row">
                             <span class="card_table-cell">Вес</span>
                             <div class="card_table-cell"></div>
-                            <span class="card_table-cell">450 г.</span>
+                            <span class="card_table-cell">{{ product.weight }} г.</span>
                         </div>
                     </div>
                 </div>
                 <div class="parameters">
+                    {% if attributes %}
                     <div class="parameter-label">Технические характеристики</div>
                     <div class="card-data">
-                        <div class="card_table-row" style="margin: 4px 0 0;">
-                            <span class="card_table-cell">Производитель</span>
-                            <div class="card_table-cell"></div>
-                            <span class="card_table-cell">Lucoil</span>
-                        </div>
+                        {% for attribute in attributes %}
                         <div class="card_table-row">
-                            <span class="card_table-cell">Артикул</span>
+                            <span class="card_table-cell">{{ attribute.name }}</span>
                             <div class="card_table-cell"></div>
-                            <span class="card_table-cell">312576</span>
+                            <span class="card_table-cell">{{ attribute.value }}{{ attribute.key }}</span>
                         </div>
-                        <div class="card_table-row">
-                            <span class="card_table-cell">Страна производства</span>
-                            <div class="card_table-cell"></div>
-                            <span class="card_table-cell">Нидерланды</span>
-                        </div>
-                        <div class="card_table-row">
-                            <span class="card_table-cell">Вес</span>
-                            <div class="card_table-cell"></div>
-                            <span class="card_table-cell">450 г.</span>
-                        </div>
+                        {% endfor %}
                     </div>
+                    {% endif %}
                 </div >
             </div>
             <div class="product-action">
@@ -83,7 +73,7 @@
                         <div class="product-cont-price">5 000 <span class="valute"> ₽</span></div>
                     </div>
                     <div style="padding-left: 20px;padding-right: 20px;">
-                        <button class="product-to-cart" style="display: block">Добавить в корзину</button>
+                        <button class="product-to-cart" data-product-id="{{ product.id }}" style="display: block">Добавить в корзину</button>
                     </div>
                     <div style="padding-left: 20px; padding-right: 20px;">
                         <div class="product-in-cart" style="display: none">
@@ -106,4 +96,5 @@
     </div>
     {% include 'footer_down.html' %}
     <script src="{% static 'card_product/js/scripts.js' %}"></script>
+    <script src="{% static 'card_product/js/add_to_cart.js' %}"></script>
 </body>

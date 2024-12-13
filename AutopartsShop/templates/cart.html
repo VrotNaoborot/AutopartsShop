@@ -1,5 +1,6 @@
 <head>
     {% load static %}
+    {% load custom_filters %}
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -8,15 +9,18 @@
     <link rel="stylesheet" href="{% static 'footer_down/css/footer_down.css' %}">
     <link rel="stylesheet" href="{% static 'card_product/css/card_product.css' %}">
     <link rel="stylesheet" href="{% static 'cart/css/cart.css' %}">
+    <meta name="csrf-token" content="{{ csrf_token }}">
 </head>
 <body>
     <div class="main-container">
         {% include 'main_header.html' %}
         <div class="label-cart">Корзина</div>
+        {% if not items %}
         <div class="empty-cart" style="display: none">
             <span class="indicator"></span>
           Ваша корзина пуста.
         </div>
+        {% else %}
         <div class="content">
             <div class="cart-table">
                 <!-- Заголовок таблицы -->
@@ -26,57 +30,35 @@
                     <div class="cart-column">Количество</div>
                     <div class="cart-column">Цена</div>
                 </div>
-
-                <div class="cart-row" id="1">
+                {% for item in items %}
+                <div class="cart-row" id="{{ item.product.id }}">
                     <div class="cart-column">
-                        <img src="/media/1.jpeg" alt="Изображение товара" class="cart-image">
+                        <img src="{{ item.product.img1.url }}" alt="Изображение товара" class="cart-image">
                     </div>
                     <div class="cart-column">
-                        <span class="cart-item-name">Вентилятор системы кондиционирования</span>
+                        <span class="cart-item-name">{{ item.product.name }}</span>
                     </div>
                     <div class="cart-column">
                         <div class="count">
                             <button class="quantity-btn">-</button>
-                            <input type="text" class="quantity-input" value="1">
+                            <input type="text" class="quantity-input" value="{{ item.quantity }}">
                             <button class="quantity-btn">+</button>
                         </div>
                     </div>
                     <div class="cart-column">
-                        <span class="cart-price">6 000<span class="value">₽</span></span>
+                        <span class="cart-price">{{ item.product.price|space_separator }}<span class="value">₽</span></span>
                         <button class="remove-btn">✖</button>
                     </div>
                 </div>
-                <div class="cart-row" id="2">
-                    <!-- Колонка с изображением -->
-                    <div class="cart-column">
-                        <img src="/media/123.jpeg" alt="Изображение товара" class="cart-image">
-                    </div>
-                    <!-- Колонка с названием -->
-                    <div class="cart-column">
-                        <span class="cart-item-name">Вентилятор системы кондиционирования</span>
-                    </div>
-                    <!-- Колонка с количеством -->
-                    <div class="cart-column">
-                        <div class="count">
-                            <button class="quantity-btn">-</button>
-                            <input type="text" class="quantity-input" value="1">
-                            <button class="quantity-btn">+</button>
-                        </div>
-                    </div>
-                    <!-- Колонка с ценой -->
-                    <div class="cart-column">
-                        <span class="cart-price">6 000<span class="value">₽</span></span>
-                        <button class="remove-btn">✖</button>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <div class="cart-total">
                 <div class="label-total">Итого:</div>
-                <div class="value-total">5 000<span style="margin-left: 6px;">₽</span></div>
+                <div class="value-total">{{ total_price|space_separator }}<span style="margin-left: 6px;">₽</span></div>
                 <div class="ready-order">Создать заказ</div>
             </div>
-
         </div>
+        {% endif %}
     </div>
     <script src="{% static 'cart/js/cart.js' %}"></script>
 </body>
