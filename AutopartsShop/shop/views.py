@@ -41,10 +41,11 @@ def catalog(request):
     if model:
         all_products = all_products.filter(Q(model_id=model) | Q(model_id__isnull=True))
 
-    print(all_products)
+    brands = Brand.objects.all()
     context = {
         'products': all_products,
-        'count_products': len(all_products)
+        'count_products': len(all_products),
+        'brands_auto': brands
     }
     return render(request, 'catalog.html', context=context)
 
@@ -56,15 +57,12 @@ def card_product(request, card_id):
 
 
 def get_models_by_brand(request, brand_id):
-    # Заглушка
+    models_auto = ModelAuto.objects.filter(brand=brand_id)
     return JsonResponse(
         [
-            {'id': 1,
-             'name': 'A1'},
-            {'id': 2,
-             'name': 'A2'},
-            {'id': 3,
-             'name': 'A3'},
+            {'id': model.id,
+             'name': model.name}
+            for model in models_auto
         ],
         safe=False
     )
@@ -91,7 +89,6 @@ def cart(request):
     cart = Cart.objects.filter(user=request.user).first()
 
     if cart:
-        # Оптимизируем запросы, чтобы не делать дополнительные обращения к базе
         items = CartItem.objects.filter(cart=cart).select_related('product')
     else:
         items = []
@@ -103,6 +100,56 @@ def cart(request):
     }
 
     return render(request, 'cart.html', context=context)
+
+
+def search_products(request):
+    query = request.GET.get('q', '').strip()
+    if not query:
+        return JsonResponse([], safe=False)
+
+    results = Product.objects.filter(
+        Q(name__icontains=query) | Q(description__icontains=query)
+    )[:10]  # Ограничиваем результат, например, 10 товаров
+
+    # Формируем JSON-ответ
+    data = [
+        {
+            "id": product.id,
+            "name": product.name,
+        }
+        for product in results
+    ]
+    return JsonResponse(data, safe=False)
+
+
+@login_required
+@require_POST
+def update_cart_item(request):
+    data = json.loads(request.body)
+    item_id = data.get('item_id')
+    quantity = data.get('quantity')
+
+    try:
+        cart_item = CartItem.objects.get(cart_id=item_id, cart__user=request.user)
+        cart_item.quantity = quantity
+        cart_item.save()
+        return JsonResponse({'status': 'success'})
+    except CartItem.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Item not found'}, status=404)
+
+
+@login_required
+@require_POST
+def remove_cart_item(request):
+    data = json.loads(request.body)
+    item_id = data.get('item_id')
+
+    try:
+        cart_item = CartItem.objects.get(cart_id=item_id, cart__user=request.user)
+        cart_item.delete()
+        return JsonResponse({'status': 'success'})
+    except CartItem.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Item not found'}, status=404)
 
 
 @require_POST

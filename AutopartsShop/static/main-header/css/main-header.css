@@ -73,6 +73,47 @@ header .search button.search-icon i {
     color: var(--blue-color);
 }
 
+header .search-results {
+    position: absolute;
+    top: 100%; /* Под строкой поиска */
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid var(--blue-color);
+    border-radius: 5px;
+    max-height: 200px; /* Ограничение по высоте */
+    overflow-y: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: none; /* Скрыто по умолчанию */
+    z-index: 1000;
+}
+
+header .search-results div {
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--text-color, black); /* Цвет текста */
+}
+
+header .search-results div:hover {
+    background: var(--blue-color-light, #f0f8ff); /* Цвет при наведении */
+    color: var(--blue-color); /* Цвет текста при наведении */
+}
+
+header .search-results {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+header .search-results.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(2px);
+}
+
+
+
 header .auth-cart {
     display: flex;
     align-items: center;

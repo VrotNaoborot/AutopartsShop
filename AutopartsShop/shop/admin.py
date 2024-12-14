@@ -6,5 +6,6 @@ admin.site.register(Category)
 admin.site.register(Subcategories)
 admin.site.register(Attribute)
 admin.site.register(Manufacture)
-admin.site.register(ModelProduct)
 admin.site.register(Brand)
+admin.site.register(ModelAuto)
+

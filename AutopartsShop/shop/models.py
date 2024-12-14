@@ -13,8 +13,9 @@ class Brand(models.Model):
         verbose_name_plural = "Бренды авто"
 
 
-class ModelProduct(models.Model):
+class ModelAuto(models.Model):
     name = models.CharField(max_length=255, verbose_name="Название")
+    brand = models.ForeignKey(Brand, verbose_name="Название", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -86,7 +87,7 @@ class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name="Название товара")
     type_product = models.CharField(max_length=50, choices=TYPE_PRODUCT_CHOICES, verbose_name="Тип продукта")
     brand = models.ForeignKey(Brand, verbose_name="Бренд авто", on_delete=models.CASCADE, null=True, blank=True)
-    model = models.ForeignKey(ModelProduct, verbose_name="Модель авто", on_delete=models.CASCADE, null=True, blank=True)
+    model = models.ForeignKey(ModelAuto, verbose_name="Модель авто", on_delete=models.CASCADE, null=True, blank=True)
     manufacture = models.ForeignKey(Manufacture, verbose_name="Производитель товара", on_delete=models.CASCADE)
     price = models.IntegerField(verbose_name="Цена")
     subcategory = models.ForeignKey(Subcategories, verbose_name="Подкатегория", on_delete=models.CASCADE)

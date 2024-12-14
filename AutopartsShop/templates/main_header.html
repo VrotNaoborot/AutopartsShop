@@ -1,5 +1,6 @@
 {% load static %}
 <header>
+    <div id="card-product-url" data-url="{% url 'card_product' 0 %}"></div>
     <div class="section-1">
         <div>
             <img src="https://s.exist.ru/img2/icons/header/map-marker.svg" alt="map marker" class="map-icon">
@@ -15,15 +16,18 @@
     </div>
 
     <div class="section-2">
-        <div class="logo">
+        <a href="{% url 'index' %}" class="logo">
             <img src="{% static 'main-header/img/logo.webp' %}" alt="Logo">
             <span class="site-name">Автозапчасти 12</span>
-        </div>
+        </a>
         <div class="search">
             <input type="text" placeholder="Поиск...">
             <button type="submit" class="search-icon">
                 <i class="fas fa-search"></i>
             </button>
+            <div class="search-results" id="search-results">
+
+            </div>
         </div>
         <div class="auth-cart">
             <div class="auth">
