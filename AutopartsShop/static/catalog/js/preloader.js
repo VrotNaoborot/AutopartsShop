@@ -60,45 +60,16 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     };
 
-    // Обработка марки
-    const selectedBrandId = getUrlParams("mark")[0]; // Берём первое значение
-    const selectedModelId = getUrlParams("model")[0]; // Берём первое значение
-
-    setupDropdown("marks", "mark"); // Настройка марки
-    if (selectedBrandId) {
-        loadModels(selectedBrandId, selectedModelId); // Загружаем модели для выбранной марки
-    }
-
-    // Обработка категорий
-    const setupCategory = () => {
-        const selectedCategory = getUrlParams("category")[0]; // Берём первую категорию
-        const categoryContainer = document.getElementById("categories");
-        const toggleTextElement = categoryContainer.querySelector(".choices__item");
-
-        if (selectedCategory) {
-            const matchingCategory = categoryContainer.querySelector(`[data-id="${selectedCategory}"]`);
-            if (matchingCategory) {
-                toggleTextElement.textContent = matchingCategory.textContent.trim(); // Устанавливаем текст категории
-                toggleTextElement.setAttribute("data-id", selectedCategory); // Обновляем ID
-            }
-
-            // После выбора категории, загружаем подкатегории
-            loadSubcategories(selectedCategory);
-        }
-    };
-
-    // Функция для загрузки подкатегорий
-    const loadSubcategories = (categoryId) => {
+    // Динамическая загрузка подкатегорий
+    const loadSubcategories = (categoryId, selectedSubcategoryId) => {
         const subcategoryContainer = document.getElementById("subcategory-main");
+        const toggleTextElement = subcategoryContainer.querySelector(".choices__item");
         const subcategoryList = subcategoryContainer.querySelector('.choices__list[role="listbox"]');
 
+        if (!categoryId) return;
+
         // Очистка старых подкатегорий
-        subcategoryList.innerHTML = `
-            <div id="choices--brand-ji-item-choice-1"
-                class="choices__item choices__item--choice choices__placeholder choices__item--selectable"
-                role="option" data-choice="" data-id="-1" data-value="" data-select-text=""
-                data-choice-selectable="" aria-selected="true">Выберите подкатегорию
-            </div>`;
+        subcategoryList.innerHTML = "";
 
         // Выполняем AJAX-запрос для получения подкатегорий
         fetch(`/get-subcategories/${categoryId}/`)
@@ -109,16 +80,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     subcategoryItem.id = `choices--brand-ji-item-choice-${subcategory.id}`;
                     subcategoryItem.classList.add('choices__item', 'choices__item--choice', 'choices__item--selectable');
                     subcategoryItem.setAttribute('role', 'option');
-                    subcategoryItem.setAttribute('data-choice', '');
                     subcategoryItem.setAttribute('data-id', subcategory.id);
-                    subcategoryItem.setAttribute('data-value', subcategory.name);
-                    subcategoryItem.setAttribute('data-select-text', '');
-                    subcategoryItem.setAttribute('data-choice-selectable', '');
-                    subcategoryItem.setAttribute('aria-selected', 'false');
                     subcategoryItem.textContent = subcategory.name;
 
                     // Вставляем подкатегорию в список
                     subcategoryList.appendChild(subcategoryItem);
+
+                    // Устанавливаем выбранную подкатегорию, если передана
+                    if (subcategory.id === parseInt(selectedSubcategoryId)) {
+                        toggleTextElement.textContent = subcategory.name;
+                        toggleTextElement.setAttribute("data-id", subcategory.id);
+                    }
                 });
 
                 // Показываем контейнер подкатегорий с новыми данными
@@ -131,29 +103,23 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     };
 
-    setupCategory(); // Настройка категории
+    // Обработка марки
+    const selectedBrandId = getUrlParams("mark")[0]; // Берём первое значение
+    const selectedModelId = getUrlParams("model")[0]; // Берём первое значение
 
-    // Обработка подкатегории
-    const setupSubcategory = () => {
-        const selectedSubcategory = getUrlParams("subcategory")[0]; // Берём первую подкатегорию
-        const subcategoryContainer = document.getElementById("subcategory-main");
-        const toggleTextElement = subcategoryContainer.querySelector(".choices__item");
+    setupDropdown("marks", "mark"); // Настройка марки
+    if (selectedBrandId) {
+        loadModels(selectedBrandId, selectedModelId); // Загружаем модели для выбранной марки
+    }
 
-        // Отображаем блок подкатегории, если параметр в URL существует
-        if (selectedSubcategory) {
-            subcategoryContainer.style.display = "block"; // Показываем подкатегорию
+    // Обработка категорий
+    const selectedCategory = getUrlParams("category")[0]; // Берём первую категорию
+    const selectedSubcategory = getUrlParams("subcategory")[0]; // Берём первую подкатегорию
 
-            const matchingSubcategory = subcategoryContainer.querySelector(`[data-id="${selectedSubcategory}"]`);
-            if (matchingSubcategory) {
-                toggleTextElement.textContent = matchingSubcategory.textContent.trim(); // Устанавливаем текст подкатегории
-                toggleTextElement.setAttribute("data-id", selectedSubcategory); // Обновляем ID
-            }
-        } else {
-            subcategoryContainer.style.display = "none"; // Скрываем блок подкатегории, если параметра нет
-        }
-    };
-
-    setupSubcategory(); // Настройка подкатегории
+    setupDropdown("categories", "category"); // Настройка категории
+    if (selectedCategory) {
+        loadSubcategories(selectedCategory, selectedSubcategory); // Загружаем подкатегории для выбранной категории
+    }
 
     // Обработка чекбоксов
     const selectedTypes = getUrlParams("type"); // Получаем все выбранные типы

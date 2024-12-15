@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     async function fetchSearchResults(query) {
-        const response = await fetch(`search/?q=${query}`);
+        const response = await fetch(`/search/?q=${query}`);
         if (response.ok) {
             return await response.json();
         } else {
