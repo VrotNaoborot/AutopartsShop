@@ -93,7 +93,7 @@ class Product(models.Model):
     subcategory = models.ForeignKey(Subcategories, verbose_name="Подкатегория", on_delete=models.CASCADE)
     attributes = models.ManyToManyField(Attribute, related_name="categories", verbose_name="Атрибуты")
     weight = models.IntegerField(verbose_name="Вес товара")
-    description = models.CharField(max_length=1000, verbose_name="Описание")
+    description = models.CharField(max_length=1000, verbose_name="Описание", blank=True, null=True)
 
     def __str__(self):
         return f"{self.name}"

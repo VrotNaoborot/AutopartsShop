@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('test/', test),
-    path('catalog/', catalog),
+    path('catalog/', catalog, name='catalog'),
     path('get-models/<int:brand_id>/', get_models_by_brand),
     path('get-subcategories/<int:subcategories_id>/', get_subcategories),
     path('card-product/<int:card_id>', card_product, name='card_product'),

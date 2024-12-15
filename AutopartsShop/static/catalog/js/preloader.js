@@ -81,10 +81,79 @@ document.addEventListener("DOMContentLoaded", () => {
                 toggleTextElement.textContent = matchingCategory.textContent.trim(); // Устанавливаем текст категории
                 toggleTextElement.setAttribute("data-id", selectedCategory); // Обновляем ID
             }
+
+            // После выбора категории, загружаем подкатегории
+            loadSubcategories(selectedCategory);
         }
     };
 
+    // Функция для загрузки подкатегорий
+    const loadSubcategories = (categoryId) => {
+        const subcategoryContainer = document.getElementById("subcategory-main");
+        const subcategoryList = subcategoryContainer.querySelector('.choices__list[role="listbox"]');
+
+        // Очистка старых подкатегорий
+        subcategoryList.innerHTML = `
+            <div id="choices--brand-ji-item-choice-1"
+                class="choices__item choices__item--choice choices__placeholder choices__item--selectable"
+                role="option" data-choice="" data-id="-1" data-value="" data-select-text=""
+                data-choice-selectable="" aria-selected="true">Выберите подкатегорию
+            </div>`;
+
+        // Выполняем AJAX-запрос для получения подкатегорий
+        fetch(`/get-subcategories/${categoryId}/`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(subcategory => {
+                    const subcategoryItem = document.createElement('div');
+                    subcategoryItem.id = `choices--brand-ji-item-choice-${subcategory.id}`;
+                    subcategoryItem.classList.add('choices__item', 'choices__item--choice', 'choices__item--selectable');
+                    subcategoryItem.setAttribute('role', 'option');
+                    subcategoryItem.setAttribute('data-choice', '');
+                    subcategoryItem.setAttribute('data-id', subcategory.id);
+                    subcategoryItem.setAttribute('data-value', subcategory.name);
+                    subcategoryItem.setAttribute('data-select-text', '');
+                    subcategoryItem.setAttribute('data-choice-selectable', '');
+                    subcategoryItem.setAttribute('aria-selected', 'false');
+                    subcategoryItem.textContent = subcategory.name;
+
+                    // Вставляем подкатегорию в список
+                    subcategoryList.appendChild(subcategoryItem);
+                });
+
+                // Показываем контейнер подкатегорий с новыми данными
+                subcategoryContainer.style.display = "block";
+            })
+            .catch(error => {
+                console.error('Ошибка при получении подкатегорий:', error);
+                // В случае ошибки, скрываем контейнер подкатегорий
+                subcategoryContainer.style.display = "none";
+            });
+    };
+
     setupCategory(); // Настройка категории
+
+    // Обработка подкатегории
+    const setupSubcategory = () => {
+        const selectedSubcategory = getUrlParams("subcategory")[0]; // Берём первую подкатегорию
+        const subcategoryContainer = document.getElementById("subcategory-main");
+        const toggleTextElement = subcategoryContainer.querySelector(".choices__item");
+
+        // Отображаем блок подкатегории, если параметр в URL существует
+        if (selectedSubcategory) {
+            subcategoryContainer.style.display = "block"; // Показываем подкатегорию
+
+            const matchingSubcategory = subcategoryContainer.querySelector(`[data-id="${selectedSubcategory}"]`);
+            if (matchingSubcategory) {
+                toggleTextElement.textContent = matchingSubcategory.textContent.trim(); // Устанавливаем текст подкатегории
+                toggleTextElement.setAttribute("data-id", selectedSubcategory); // Обновляем ID
+            }
+        } else {
+            subcategoryContainer.style.display = "none"; // Скрываем блок подкатегории, если параметра нет
+        }
+    };
+
+    setupSubcategory(); // Настройка подкатегории
 
     // Обработка чекбоксов
     const selectedTypes = getUrlParams("type"); // Получаем все выбранные типы
@@ -102,9 +171,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const applyButton = document.querySelector(".apply-btn");
     if (
         selectedTypes.length > 0 ||
-        selectedBrandId ||
-        selectedModelId ||
-        getUrlParams("category").length > 0
+        getUrlParams("mark").length > 0 ||
+        getUrlParams("model").length > 0 ||
+        getUrlParams("category").length > 0 ||
+        getUrlParams("subcategory").length > 0
     ) {
         applyButton.style.display = "flex"; // Делаем кнопку видимой
     }

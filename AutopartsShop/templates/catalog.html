@@ -101,7 +101,7 @@
                 <div id="categories" class="dynamic-filter" style="margin-bottom: 10px;">
                     <span class="filters_section-title">Категория</span>
                     <div class="choices" data-type="select-one" tabindex="0" role="combobox" aria-autocomplete="list"
-                         aria-haspopup="true" aria-expanded="false">
+                         aria-haspopup="true" aria-expanded="false" id="category-main">
                         <div class="choices__inner"><select class="select choices__input" name="brand" hidden=""
                                                             tabindex="-1" data-choice="active">
                             <option value="AVA QUALITY COOLING">Выберите категорию</option>
@@ -114,27 +114,24 @@
                             </div>
                         </div>
                         <div class="choices__list choices__list--dropdown" aria-expanded="false">
-                            <input type="text" class="choices__input choices__input--cloned" autocomplete="off"
-                                   autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list"
-                                   aria-label="Выберите" placeholder=""
-                                   aria-activedescendant="choices--brand-ji-item-choice-1">
                             <div class="choices__list" role="listbox">
-                                <div id="choices--brand-ji-item-choice-1"
+                                <div id="choices--category-item-choice-1"
                                      class="choices__item choices__item--choice choices__placeholder choices__item--selectable is-highlighted"
                                      role="option" data-choice="" data-id="-1" data-value="" data-select-text=""
                                      data-choice-selectable="" aria-selected="true">Выберите категорию
                                 </div>
-                                <div id="choices--brand-ji-item-choice-2"
+                                {% for category in categories %}
+                                <div id="choices--category-item-choice-{{ category.id }}"
                                      class="choices__item choices__item--choice is-selected choices__item--selectable"
-                                     role="option" data-choice="" data-id="1" data-value="AVA QUALITY COOLING"
-                                     data-select-text="" data-choice-selectable="" aria-selected="false">AVA QUALITY
-                                    COOLING
+                                     role="option" data-choice="" data-id="{{ category.id }}" data-value="{{ category.name }}"
+                                     data-select-text="" data-choice-selectable="" aria-selected="false">{{ category.name }}
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                     <div class="choices" data-type="select-one" tabindex="0" role="combobox" aria-autocomplete="list"
-                         aria-haspopup="true" aria-expanded="false" style="display: none">
+                         aria-haspopup="true" aria-expanded="false" style="display: none" id="subcategory-main">
                         <div class="choices__inner"><select class="select choices__input" name="brand" hidden=""
                                                             tabindex="-1" data-choice="active">
                             <option>Выберите подкатегорию</option>
@@ -147,22 +144,19 @@
                             </div>
                         </div>
                         <div class="choices__list choices__list--dropdown" aria-expanded="false">
-                            <input type="text" class="choices__input choices__input--cloned" autocomplete="off"
-                                   autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list"
-                                   aria-label="Выберите" placeholder=""
-                                   aria-activedescendant="choices--brand-ji-item-choice-1">
                             <div class="choices__list" role="listbox">
-                                <div id="choices--brand-ji-item-choice-1"
+                                <div id="choices--subcategory-item-choice-0"
                                      class="choices__item choices__item--choice choices__placeholder choices__item--selectable is-highlighted"
                                      role="option" data-choice="" data-id="-1" data-value="" data-select-text=""
                                      data-choice-selectable="" aria-selected="true">Выберите подкатегорию
                                 </div>
-                                <div id="choices--brand-ji-item-choice-2"
+                                {% for subcategory in subcategories %}
+                                <div id="choices--subcategory-item-choice-{{ subcategory.id }}"
                                      class="choices__item choices__item--choice is-selected choices__item--selectable"
-                                     role="option" data-choice="" data-id="1" data-value="AVA QUALITY COOLING"
-                                     data-select-text="" data-choice-selectable="" aria-selected="false">AVA QUALITY
-                                    COOLING
+                                     role="option" data-choice="" data-id="{{ subcategory.id }}" data-value="{{ subcategory.name }}"
+                                     data-select-text="" data-choice-selectable="" aria-selected="false">{{ subcategory.name }}
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -218,9 +212,11 @@
                                 <div class="card_table-cell"></div>
                                 <span class="card_table-cell">{{ product.weight }}</span>
                             </div>
+                            {% if product.description %}
                             <div class="card_table-row" style="font-size: 14px;margin-top: 5px">
                                 <span><b>Краткое описание: </b> {{ product.description }}</span>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
 

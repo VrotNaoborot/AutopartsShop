@@ -42,10 +42,12 @@ def catalog(request):
         all_products = all_products.filter(Q(model_id=model) | Q(model_id__isnull=True))
 
     brands = Brand.objects.all()
+    categories = Category.objects.all()
     context = {
         'products': all_products,
         'count_products': len(all_products),
-        'brands_auto': brands
+        'brands_auto': brands,
+        'categories': categories
     }
     return render(request, 'catalog.html', context=context)
 
@@ -69,15 +71,12 @@ def get_models_by_brand(request, brand_id):
 
 
 def get_subcategories(request, subcategories_id):
-    # Заглушка
+    subcategories = Subcategories.objects.filter(category=subcategories_id)
     return JsonResponse(
         [
-            {'id': 1,
-             'name': 'subcategory1'},
-            {'id': 2,
-             'name': 'subcategory2'},
-            {'id': 3,
-             'name': 'subcategory3'},
+            {'id': subcategory.id,
+             'name': subcategory.name}
+            for subcategory in subcategories
         ],
         safe=False
     )
